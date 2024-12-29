@@ -1,5 +1,7 @@
 ---
+import Box from "../components/Box.astro";
 import Hero from "../components/Hero.astro";
+import Quote from "../components/Quote.astro";
 import Section from "../components/Section.astro";
 import Page from "../layouts/Page.astro";
 ---
@@ -7,13 +9,31 @@ import Page from "../layouts/Page.astro";
 <Page description="Kristýna Ivančíková - Fitness trenér chomutov">
     <Hero />
     <Section title="O mně" />
+    <Section
+        title="Můj přístup"
+        perex="Ušetřím ti spoustu času i bolesti a urychlím tvoje výsledky. Rozumím anatomii, principům pohybu lidského těla a neustále doplňuju svoje znalosti. Dohlédnu na to, aby sis neublížil a efektivně dosáhl cíle. Prošla jsem trnitou cestou za silným a zdravým tělem a svoje zkušenosti aplikuju do tréninku. Každý je svým způsobem unikátní hlavolam, proto ke všem přistupuju nadmíru individuálně. Můj přístup je komplexní - to, jak se cítíme uvnitř i navenek, ovlivňuje nás i naše okolí."
+    />
     <Section title="Proč cvičit se mnou" />
     <Section title="Desatero" />
     <Section title="Co nabízím" />
+    <Quote />
     <Section title="Recenze" />
-    <Section title="Ceník" />
+    <Section
+        title="Ceník"
+        perex="<strong>PRVNÍ TRÉNINK ZA 200,-kč</strong> (jeden oběd) - ať máte možnost posoudit, jestli za to ty peníze stojí. <br/> Na vše kromě skupinovek nabízím slevu pro samoživitele a seniory. Vše je o domluvě."
+    >
+        <Box title="Individual trénink" price="600 Kč" /></Section
+    >
     <Section title="Fitness kemp" />
-    <Section title="Kde trénuji" />
     <Section title="Dárkové poukazy" />
-    <Section title="Kontaktujte mě" />
+    <Section title="Kontaktujte mě">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87092.87418389645!2d13.31797926607374!3d50.46404663802711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470a1b0fa8ba72c7%3A0x5bacbc1a9ba5d888!2sChomutov!5e1!3m2!1scs!2scz!4v1735505118339!5m2!1scs!2scz"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </Section>
 </Page>

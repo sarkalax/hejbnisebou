@@ -15,24 +15,32 @@ const id = title
     .replace(/\s/g, "-");
 ---
 
-<section id={id}>
-    <Wrapper>
+<Wrapper id={id}>
+    <div>
         <h2>
             {title}
         </h2>
-        <p>
-            {perex}
-        </p>
-        <slot />
-    </Wrapper>
-</section>
+        <p set:html={perex} class="perex" />
+    </div>
+    <slot />
+</Wrapper>
 
 <style>
-    section {
-        padding: 6rem 0;
+    div {
+        padding: 6rem 0 4rem;
+        width: 100%;
     }
     h2 {
         text-align: center;
         text-transform: uppercase;
+        padding-bottom: 3.5rem;
+    }
+    .perex {
+        text-align: center;
+        font-size: 1.8rem;
+        line-height: 1.5;
+        color: var(--text-color);
+        max-width: 80vw;
+        margin: 0 auto;
     }
 </style>

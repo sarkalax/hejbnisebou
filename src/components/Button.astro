@@ -36,12 +36,14 @@ const { title, variant = "primary" } = Astro.props;
         text-transform: uppercase;
         font-weight: 500;
         line-height: 1;
+        cursor: pointer;
+        text-wrap: nowrap;
     }
     .primary {
         border: 1px solid var(--background-color);
         background-color: var(--orange-color);
         border-radius: 999px;
-        padding: 8px 16px;
+        padding: 12px 16px;
         color: var(--background-color);
     }
     .secondary {

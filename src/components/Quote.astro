@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import svg from "../assets/svg/blockquote.svg";
+---
+
+<section>
+    <Image src={svg} alt="Citát" width={1440} class="quote" />
+    <blockquote>"Buduj sílu a svaly, ne ego."</blockquote>
+</section>
+
+<style>
+    section {
+        position: relative;
+        margin-top: 10rem;
+    }
+    blockquote {
+        background-color: var(--orange-color);
+        width: 100%;
+        font-size: 2rem;
+        font-style: italic;
+        text-align: center;
+        padding: 7rem 4rem;
+        color: var(--white-color);
+        font-size: 3rem;
+    }
+    .quote {
+        position: absolute;
+        bottom: 80%;
+
+        z-index: -1;
+    }
+</style>

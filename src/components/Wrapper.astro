@@ -1,4 +1,12 @@
-<section class="wrapper">
+---
+interface Props {
+    id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section id={id} class="wrapper">
     <slot />
 </section>
 

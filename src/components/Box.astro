@@ -1,0 +1,37 @@
+---
+interface Props {
+    title: string;
+    price: string;
+}
+
+const { title, price } = Astro.props;
+---
+
+<article>
+    <h3>{title}</h3>
+    <p>{price}</p>
+</article>
+
+<style>
+    article {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 170, 0, 0.5);
+        border-radius: 20px;
+        max-width: 200px;
+        padding: 5rem 3rem;
+    }
+    article::before {
+        position: absolute;
+        inset: 0;
+        display: block;
+        content: "" "";
+        background: linear-gradient(
+            -45deg,
+            rgba(255, 170, 0, 1),
+            rgba(34, 34, 34, 1)
+        );
+        opacity: 0.2;
+        z-index: 0;
+    }
+</style>
