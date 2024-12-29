@@ -1,0 +1,17 @@
+<section class="wrapper">
+    <slot />
+</section>
+
+<style>
+    .wrapper {
+        position: relative;
+        width: 100%;
+        max-width: var(--max-container-width);
+        margin-inline: auto;
+        padding-inline: 1rem;
+
+        @media only screen and (min-width: 960px) {
+            padding-inline: 2.5rem;
+        }
+    }
+</style>

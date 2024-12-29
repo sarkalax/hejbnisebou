@@ -1,0 +1,32 @@
+---
+import Wrapper from "./Wrapper.astro";
+
+interface Props {
+    title: string;
+    perex?: string;
+}
+
+const { title, perex } = Astro.props;
+---
+
+<section>
+    <Wrapper>
+        <h2>
+            {title}
+        </h2>
+        <p>
+            {perex}
+        </p>
+        <slot />
+    </Wrapper>
+</section>
+
+<style>
+    section {
+        padding: 6rem 0;
+    }
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+    }
+</style>

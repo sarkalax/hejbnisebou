@@ -1,0 +1,43 @@
+---
+import Button from "./Button.astro";
+import Logo from "./Logo.astro";
+import Wrapper from "./Wrapper.astro";
+---
+
+<header>
+    <Logo />
+    <nav>
+        <ul>
+            <li>o mně</li>
+            <li>služby</li>
+            <li>ceník</li>
+            <li>dárkové poukazy</li>
+        </ul>
+    </nav>
+    <Button title="Kontakt" />
+</header>
+
+<style>
+    header {
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        z-index: 999;
+
+        @media only screen and (min-width: 960px) {
+            padding: 1.8rem 2.5rem;
+        }
+    }
+    ul {
+        display: flex;
+        width: 100%;
+        gap: 30px;
+    }
+    ul li {
+        list-style: none;
+    }
+</style>

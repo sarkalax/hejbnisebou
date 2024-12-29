@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import arrow from "../assets/icons/arrow.svg";
+
+interface Props {
+    title: string;
+    variant?: "primary" | "secondary";
+}
+
+const { title, variant = "primary" } = Astro.props;
+---
+
+<button class={variant}>
+    <svg
+        width="14"
+        height="14"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z"
+            fill="currentColor"></path>
+    </svg>
+
+    {title}
+</button>
+
+<style>
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        gap: 10px;
+        text-transform: uppercase;
+        font-weight: 500;
+        line-height: 1;
+    }
+    .primary {
+        border: 1px solid var(--background-color);
+        background-color: var(--orange-color);
+        border-radius: 999px;
+        padding: 8px 16px;
+        color: var(--background-color);
+    }
+    .secondary {
+        text-decoration: underline;
+        color: var(--white-color);
+    }
+</style>

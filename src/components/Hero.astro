@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import Button from "./Button.astro";
+import Wrapper from "./Wrapper.astro";
+import image from "../assets/img/hero.jpg";
+---
+
+<Wrapper>
+    <Image
+        src={image}
+        width={1440}
+        alt="Osobní trenér Chomutov"
+        class="hero-image"
+    />
+    <div class="hero">
+        <div class="gradient"></div>
+        <h1>BUDUJ SÍLU A SVALY, NE&nbsp;EGO</h1>
+        <div class="perex">
+            <article>
+                Lorem ipsum dolor sit amet consectetur. Dolor ac eget sed
+                pellentesque quam. Vitae dolor libero cursus laoreet felis.
+            </article>
+            <a href="#muj-pristup">
+                <Button title="Můj přístup" variant="secondary" />
+            </a>
+        </div>
+    </div>
+</Wrapper>
+
+<style>
+    h1 {
+        font-size: clamp(3rem, 10vw, 7rem);
+        color: var(--orange-color);
+        line-height: 7.8rem;
+        font-weight: 800;
+        padding-bottom: 2rem;
+        line-height: 1;
+
+        @media only screen and (min-width: 960px) {
+            column-gap: 50px;
+            max-width: 50vw;
+        }
+    }
+    .hero {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-end;
+        font-size: 2rem;
+        align-self: flex-end;
+        padding-bottom: 5vh;
+        color: var(--text-color);
+        z-index: 2;
+    }
+    .hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .perex {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+
+        @media only screen and (min-width: 960px) {
+            flex-direction: row;
+            column-gap: 50px;
+            max-width: 50vw;
+        }
+    }
+    .gradient {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 50vh;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(26, 26, 26, 1));
+        z-index: -1;
+    }
+</style>

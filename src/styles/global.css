@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat.ttf");
+}
+@font-face {
+  font-family: "SourceSans";
+  src: url("../assets/fonts/SourceSans.ttf");
+}
+
+:root {
+    --background-color: #1A1A1A;
+    --white-color: #FFFFFF;
+    --text-color: #cacaca;
+    --orange-color: #FFAA00;
+    --max-container-width: 1370px;
+    font-size: 62.5%;
+}
+
+* {
+  padding: 0;
+  margin:0;
+  box-sizing: border-box;
+}
+*::selection {
+  background: var(--orange-color);
+  color: var(--background-color)
+}
+
+html,
+body {
+  font-family: "SourceSans";
+  font-size: 1.6em;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  color: var(--text-color)
+}
+
+h1, h2, h3, h4 {
+  font-family: "Montserrat";
+  color: var(--white-color);
+}
+
+a, a:visited {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: "SourceSans";
+}
