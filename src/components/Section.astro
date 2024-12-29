@@ -7,9 +7,15 @@ interface Props {
 }
 
 const { title, perex } = Astro.props;
+
+const id = title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s/g, "-");
 ---
 
-<section>
+<section id={id}>
     <Wrapper>
         <h2>
             {title}

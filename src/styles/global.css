@@ -33,7 +33,8 @@ body {
   width: 100%;
   height: 100%;
   background-color: var(--background-color);
-  color: var(--text-color)
+  color: var(--text-color);
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4 {
