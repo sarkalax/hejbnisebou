@@ -1,0 +1,77 @@
+---
+import Section from "../../components/Section.astro";
+import ListemItem from "../../components/ListItem.astro";
+
+const items = [
+    {
+        title: "Trénuj proto, aby byl tvůj život hezčí a snazší",
+        text: "Už tě nebude unavovat to, že chce tvoje dítě 50x za den zvednout, v posteli budeš mrštnější, možná konečně uvidíš všechny svoje údy a osina v zadku v podobě bolesti zad zmizí.",
+    },
+    {
+        title: "Buď vděčný",
+        text: "Tvoje tělo, tvůj chrám. A i v chrámu je potřeba údržbáře. Ne každý má to štěstí, že se může hýbat. A jednou může být pozdě na to začít. Tvoje tělo s tebou bude celý život, neutečeš před ním.",
+    },
+    {
+        title: "Cesta je cíl",
+        text: "Na tý svojí si klidně můžeš udělat i pár zastávek na kafe..a zákusek. Jde o to si cestu užít.",
+    },
+    {
+        title: "Používej hlavu",
+        text: "Nehledej důvody, proč něco nejde, ale způsoby, jak to dokázat.",
+    },
+    {
+        title: "Neporovnávej svou postavu na sociálních sítích",
+        text: "Jedině, pokud se chceš s deckou vína bičovat nad někým v perfektním úhlu, světle a s filtrem.",
+    },
+    {
+        title: "Pravidelnost je klíč",
+        text: "Přeceňujeme to, co zvládneme za krátkou dobu a podceňujeme to, co dokážeme v dlouhodobým horizontu.",
+    },
+    {
+        title: "Když moc tlačíš, vyjde z toho hov..",
+        text: "aneb nedonutíš strom k růstu tím, že na něj budeš křičet.",
+    },
+    {
+        title: "Chyby neexistujou",
+        text: "Každá chyba je zkušenost a krok vpřed.",
+    },
+    {
+        title: "Ego je dobrý sluha, ale špatný pán",
+        text: "Pokud si nechceš ublížit, nikdy nedělej cvik, na který nemáš sílu, jen abys vypadal silnější před ostatními a poklepával se po rameni. 5 perfektních kliků je víc než sebou 20x mrsknout jako lachtan.",
+    },
+    {
+        title: "Nikdy nespěchej",
+        text: "Vnímej svoje tělo a soustřeď se na správný provedení. V autě při  neznámý a komplikovaný situaci taky zpomalíš.  Intenzita a rychlost jsou dvě odlišný věci.",
+    },
+];
+---
+
+<Section title="Desatero">
+    <ul>
+        {
+            items.map((item) => {
+                if (!item.title) {
+                    return null;
+                }
+
+                return (
+                    <ListemItem title={item.title} description={item.text} />
+                );
+            })
+        }
+    </ul>
+</Section>
+
+<style>
+    ul {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: 1fr;
+        column-gap: clamp(2rem, 5vw, 4rem);
+        margin: 0 auto;
+
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>

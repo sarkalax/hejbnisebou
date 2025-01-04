@@ -1,0 +1,83 @@
+---
+import Section from "../components/Section.astro";
+import Wrapper from "../components/Wrapper.astro";
+
+import kid from "../assets/svg/kid.svg";
+import glass from "../assets/svg/magnifying-glass.svg";
+import tape from "../assets/svg/measure-tape.svg";
+import muscle from "../assets/svg/muscle.svg";
+import run from "../assets/svg/run.svg";
+import sun from "../assets/svg/sun.svg";
+import tree from "../assets/svg/tree.svg";
+import OfferCard from "../components/OfferCard.astro";
+
+const items = [
+    {
+        icon: glass,
+        title: "Diagnostika",
+    },
+    {
+        icon: tape,
+        title: "Redukce váhy",
+    },
+    {
+        icon: muscle,
+        title: "Budování svalové hmoty",
+    },
+    {
+        icon: muscle,
+        title: "Eliminace bolesti",
+    },
+    {
+        icon: tree,
+        title: "Trénink venku",
+    },
+    {
+        icon: run,
+        title: "Goata (biomechanika pohybu)",
+    },
+    {
+        icon: kid,
+        title: "Dětský pohybový kroužek",
+    },
+    {
+        icon: sun,
+        title: "Fitness kemp",
+    },
+];
+---
+
+<Section title="Co nabízím">
+    <Wrapper>
+        <ul>
+            {
+                items.map((item) => {
+                    if (!item.title) {
+                        return null;
+                    }
+
+                    return (
+                        <li>
+                            <OfferCard {...item} />
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </Wrapper>
+</Section>
+
+<style>
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 3rem;
+        row-gap: 4rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    li {
+        list-style-type: none;
+    }
+</style>

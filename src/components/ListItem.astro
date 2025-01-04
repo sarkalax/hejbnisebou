@@ -1,0 +1,31 @@
+---
+interface ListItemProps {
+    title: string;
+    description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<li>
+    <h2>{title}</h2>
+    <p>{description}</p>
+</li>
+
+<style>
+    li {
+        position: relative;
+        margin-left: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    li:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+    h2::before {
+        position: absolute;
+        left: -2.5rem;
+        top: -0.2rem;
+        content: url('data:image/svg+xml, <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" ><path d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z" fill="orange"></path></svg>');
+    }
+</style>

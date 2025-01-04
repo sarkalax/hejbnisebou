@@ -10,28 +10,40 @@ const { title, price } = Astro.props;
 <article>
     <h3>{title}</h3>
     <p>{price}</p>
+    nebo <br />
+    <p>
+        {price}
+    </p>
 </article>
 
 <style>
     article {
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 170, 0, 0.5);
-        border-radius: 20px;
-        max-width: 200px;
+        box-shadow: 1px -1px 0 rgba(255, 170, 0, 0.4);
+        align-self: stretch;
+        border-radius: 40px;
+        max-width: 300px;
         padding: 5rem 3rem;
     }
     article::before {
         position: absolute;
         inset: 0;
         display: block;
-        content: "" "";
-        background: linear-gradient(
-            -45deg,
-            rgba(255, 170, 0, 1),
-            rgba(34, 34, 34, 1)
+        content: "";
+        background: radial-gradient(
+            circle at top right,
+            rgba(255, 170, 0, 1) 0%,
+            rgba(214, 126, 21, 0.5) 32%,
+            rgba(0, 0, 0, 0) 80%
         );
-        opacity: 0.2;
-        z-index: 0;
+        opacity: 0.4;
+    }
+    h3 {
+        font-family: "SourceSans";
+        font-size: 2.4rem;
+    }
+    p {
+        font-size: 4rem;
     }
 </style>

@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import Section from "../../components/Section.astro";
+import Wrapper from "../../components/Wrapper.astro";
+
+import about from "../../assets/img/about.jpg";
+import approach from "../../assets/img/about2.jpg";
+---
+
+<Wrapper>
+    <div class="about-section">
+        <Image
+            src={about}
+            alt="Osobní trenér Chomutov"
+            width={900}
+            class="about-img"
+        />
+        <article>
+            <h2 class="section-heading">O mně</h2>
+            <p>
+                Jmenuju se Kristýna Ivančíková, je mi 31 let, trénuju v
+                Chomutově, Jirkově a v Praze a našla jsem smysl v tom, co dělám.
+                Šťourám se v anatomii a naplňuje mě, když někomu pomůžu. Baví mě
+                sledovat, jak se mým klientům na tréninku postupem času
+                rozšiřuje úsměv (hlavně po tréninku), a jak se pohyb pozitivně
+                propisuje do jejich života. Pohyb mě provází celý život, mám za
+                sebou 26 let sportovní historie. Moje pohybová paleta je pestrá
+                - zkoušela jsem téměř všechny sporty, propadla xc cyklistice a
+                kvůli bolesti zad ze sezení v kanceláři jsem se dostala k józe,
+                kalistenice a mobilitě. Nejvíc mě teď baví silový trénink,
+                švihadlo, tenis a freediving.
+            </p>
+        </article>
+        <article>
+            <h2 class="section-heading">Můj přístup</h2>
+            <p>
+                Ušetřím ti spoustu času i bolesti a urychlím tvoje výsledky.
+                Rozumím anatomii, principům pohybu lidského těla a neustále
+                doplňuju svoje znalosti. Dohlédnu na to, aby sis neublížil a
+                efektivně dosáhl cíle. Prošla jsem trnitou cestou za silným a
+                zdravým tělem a svoje zkušenosti aplikuju do tréninku. Každý je
+                svým způsobem unikátní hlavolam, proto ke všem přistupuju
+                nadmíru individuálně. Můj přístup je komplexní - to, jak se
+                cítíme uvnitř i navenek, ovlivňuje nás i naše okolí.
+            </p>
+        </article>
+        <Image
+            src={approach}
+            alt="Osobní trenér Chomutov"
+            width={900}
+            class="approach-img"
+        />
+    </div>
+</Wrapper>
+
+<style>
+    .about-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+
+        @media only screen and (min-width: 600px) {
+            grid-template-columns: 1fr 2fr;
+            column-gap: clamp(2rem, 5vw, 4rem);
+            row-gap: 4rem;
+        }
+    }
+    .about-img {
+        display: block;
+        max-width: 50vw;
+        object-fit: cover;
+        max-height: 400px;
+    }
+    .approach-img {
+        display: block;
+        max-width: 50vw;
+        object-fit: cover;
+    }
+</style>

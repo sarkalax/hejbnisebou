@@ -4,23 +4,23 @@ import Hero from "../components/Hero.astro";
 import Quote from "../components/Quote.astro";
 import Section from "../components/Section.astro";
 import Page from "../layouts/Page.astro";
+import SectionAbout from "../sections/homepage/SectionAbout.astro";
+import SectionReasons from "../sections/homepage/SectionReasons.astro";
+import SectionOffer from "../sections/SectionOffer.astro";
 ---
 
-<Page description="Kristýna Ivančíková - Fitness trenér chomutov">
-    <Hero />
-    <Section title="O mně" />
-    <Section
-        title="Můj přístup"
-        perex="Ušetřím ti spoustu času i bolesti a urychlím tvoje výsledky. Rozumím anatomii, principům pohybu lidského těla a neustále doplňuju svoje znalosti. Dohlédnu na to, aby sis neublížil a efektivně dosáhl cíle. Prošla jsem trnitou cestou za silným a zdravým tělem a svoje zkušenosti aplikuju do tréninku. Každý je svým způsobem unikátní hlavolam, proto ke všem přistupuju nadmíru individuálně. Můj přístup je komplexní - to, jak se cítíme uvnitř i navenek, ovlivňuje nás i naše okolí."
-    />
-    <Section title="Proč cvičit se mnou" />
-    <Section title="Desatero" />
-    <Section title="Co nabízím" />
+<Page
+    description="Kristýna Ivančíková - Fitness trenér Chomutov, Jirkov a Praha"
+>
+    <!-- <Hero /> -->
+    <!-- <SectionAbout /> -->
+    <SectionReasons />
+    <SectionOffer />
     <Quote />
     <Section title="Recenze" />
     <Section
         title="Ceník"
-        perex="<strong>PRVNÍ TRÉNINK ZA 200,-kč</strong> (jeden oběd) - ať máte možnost posoudit, jestli za to ty peníze stojí. <br/> Na vše kromě skupinovek nabízím slevu pro samoživitele a seniory. Vše je o domluvě."
+        perex="<strong class='highlight-text'>PRVNÍ TRÉNINK ZA 200,-kč</strong> (jeden oběd) - ať máte možnost posoudit, jestli za to ty peníze stojí. <br/> Na vše kromě skupinovek nabízím slevu pro samoživitele a seniory. Vše je o domluvě."
     >
         <Box title="Individual trénink" price="600 Kč" /></Section
     >

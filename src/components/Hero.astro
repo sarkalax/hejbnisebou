@@ -5,27 +5,32 @@ import Wrapper from "./Wrapper.astro";
 import image from "../assets/img/hero.jpg";
 ---
 
-<Wrapper>
-    <div class="hero">
-        <div class="gradient"></div>
-        <h1>BUDUJ SÍLU A SVALY, NE&nbsp;EGO</h1>
-        <div class="perex">
-            <article>
-                Lorem ipsum dolor sit amet consectetur. Dolor ac eget sed
-                pellentesque quam. Vitae dolor libero cursus laoreet felis.
-            </article>
-            <a href="#muj-pristup">
-                <Button title="Můj přístup" variant="secondary" />
-            </a>
-        </div>
-    </div>
+<div class="hero">
     <Image
         src={image}
-        width={1440}
+        width={1920}
         alt="Osobní trenér Chomutov"
         class="hero-image"
     />
-</Wrapper>
+    <div class="gradient"></div>
+    <Wrapper>
+        <div class="hero-content">
+            <h1>BUDUJ SÍLU A&nbsp;SVALY, NE&nbsp;EGO</h1>
+            <div class="perex">
+                <article>
+                    Jmenuju se Kristýna Ivančíková, jsem <span
+                        class="highlight-text"
+                        >osobní trenér v Chomutově, Jirkově a v Praze</span
+                    > a našla jsem smysl v tom, co dělám. Šťourám se v anatomii a
+                    naplňuje mě, když někomu pomůžu.
+                </article>
+                <a href="#muj-pristup">
+                    <Button title="Můj přístup" variant="secondary" />
+                </a>
+            </div>
+        </div>
+    </Wrapper>
+</div>
 
 <style>
     h1 {
@@ -38,34 +43,36 @@ import image from "../assets/img/hero.jpg";
         z-index: 1;
 
         @media only screen and (min-width: 960px) {
-            column-gap: 50px;
             max-width: 50vw;
         }
     }
     .hero {
+        position: relative;
+    }
+    .hero-content {
+        position: absolute;
+        font-size: 2rem;
+        bottom: 0;
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         height: 100vh;
+        width: 100vw;
         justify-content: flex-end;
-        font-size: 2rem;
+        padding-bottom: clamp(5rem, 10vw, 10rem);
         align-self: flex-end;
-        padding-bottom: 5vh;
-        color: var(--text-color);
     }
     .hero-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 16/9;
+        height: 100vh;
+        width: 100vw;
         object-fit: cover;
-        z-index: 0;
     }
     .perex {
         display: flex;
         flex-direction: column;
-        row-gap: 10px;
+        row-gap: 3rem;
         z-index: 1;
+        max-width: 80vw;
 
         @media only screen and (min-width: 960px) {
             flex-direction: row;
@@ -78,11 +85,8 @@ import image from "../assets/img/hero.jpg";
         bottom: 0;
         left: 0;
         right: 0;
-        display: block;
         height: 50vh;
         background: linear-gradient(rgba(0, 0, 0, 0), rgba(26, 26, 26, 1));
         z-index: 1;
-        margin-right: -5rem;
-        margin-left: -5rem;
     }
 </style>

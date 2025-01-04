@@ -38,6 +38,7 @@ const { title, variant = "primary" } = Astro.props;
         line-height: 1;
         cursor: pointer;
         text-wrap: nowrap;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .primary {
         border: 1px solid var(--background-color);
@@ -45,6 +46,11 @@ const { title, variant = "primary" } = Astro.props;
         border-radius: 999px;
         padding: 12px 16px;
         color: var(--background-color);
+    }
+    .primary:hover {
+        background-color: var(--background-color);
+        color: var(--orange-color);
+        border-color: var(--orange-color);
     }
     .secondary {
         text-decoration: underline;
