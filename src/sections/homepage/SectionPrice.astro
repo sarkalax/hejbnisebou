@@ -1,0 +1,60 @@
+---
+import PriceCard from "../../components/PriceCard.astro";
+import Section from "../../components/Section.astro";
+
+const items = [
+    {
+        title: "Individual trénink",
+        price: "600 Kč",
+        packagePrice: "5000 Kč/ 10 tréninků",
+    },
+    {
+        title: "Individual pár",
+        price: "800 Kč",
+        packagePrice: "7000 Kč/ 10 tréninků",
+    },
+    {
+        title: "Unikátní tréninkový program - Základy cvičení",
+        price: "6000 Kč/ 10 tréninků ",
+    },
+    {
+        title: "Skupinovka",
+        price: "150 Kč (vstup v ceně)",
+    },
+    {
+        title: "Skupinový workshop základy cvičení s vlastní váhou",
+        price: "3000 Kč/ 10 tréninků",
+    },
+    {
+        title: "Online trénink",
+        price: "3000 Kč/ 10 tréninků",
+    },
+];
+---
+
+<Section
+    title="Ceník"
+    perex="<strong class='highlight-text'>PRVNÍ TRÉNINK ZA 200,-kč</strong> (jeden oběd) - ať máte možnost posoudit, jestli za to ty peníze stojí. <br/> Na vše kromě skupinovek nabízím <strong class='highlight-text'>slevu pro samoživitele a seniory</strong>. Vše je o domluvě."
+>
+    <ul>
+        {
+            items.map((item) => (
+                <li>
+                    <PriceCard {...item} />
+                </li>
+            ))
+        }
+    </ul>
+</Section>
+
+<style>
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        justify-content: center;
+    }
+    li {
+        list-style-type: none;
+    }
+</style>

@@ -1,0 +1,57 @@
+---
+import Logo from "./Logo.astro";
+import instagram from "../assets/svg/instagram.svg";
+import linkedin from "../assets/svg/linkedin.svg";
+import { Image } from "astro:assets";
+---
+
+<footer>
+    <div class="socials">
+        <a href="https://www.instagram.com/hejbnisebou/">
+            <Image src={instagram} alt="Instagram - Hejbnisebou" />
+        </a>
+        <a href="">
+            <Image src={linkedin} alt="LinkedIn - Hejbnisebou" />
+        </a>
+    </div>
+    <Logo />
+    <p>© Hejbnisebou <span id="current-year"></span></p>
+</footer>
+
+<script>
+    const currentYear = new Date().getFullYear();
+    const yearElement = document.getElementById("current-year");
+    yearElement.textContent = currentYear.toString();
+</script>
+
+<style>
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5rem;
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+    }
+    p {
+        font-size: 1.6rem;
+    }
+    #current-year {
+        font-weight: bold;
+    }
+    .socials {
+        display: flex;
+        gap: 3rem;
+    }
+    .socials img {
+        width: 40px;
+        height: 40px;
+        opacity: 0.8;
+        transition: var(--transition);
+    }
+    .socials img:hover {
+        opacity: 1;
+    }
+</style>

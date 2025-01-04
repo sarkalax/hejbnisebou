@@ -22,8 +22,9 @@ const { title, variant = "primary" } = Astro.props;
             d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z"
             fill="currentColor"></path>
     </svg>
-
-    {title}
+    <span>
+        {title}
+    </span>
 </button>
 
 <style>
@@ -38,7 +39,7 @@ const { title, variant = "primary" } = Astro.props;
         line-height: 1;
         cursor: pointer;
         text-wrap: nowrap;
-        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: var(--transition);
     }
     .primary {
         border: 1px solid var(--background-color);
@@ -53,7 +54,23 @@ const { title, variant = "primary" } = Astro.props;
         border-color: var(--orange-color);
     }
     .secondary {
-        text-decoration: underline;
         color: var(--white-color);
+    }
+    .secondary span {
+        position: relative;
+        overflow-x: hidden;
+    }
+    .secondary span::after {
+        position: absolute;
+        content: "";
+        height: 1px;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        background: var(--white-color);
+        transition: var(--transition);
+    }
+    .secondary:hover span::after {
+        left: 100%;
     }
 </style>

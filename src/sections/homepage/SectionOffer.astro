@@ -1,15 +1,16 @@
 ---
-import Section from "../components/Section.astro";
-import Wrapper from "../components/Wrapper.astro";
+import Section from "../../components/Section.astro";
+import Wrapper from "../../components/Wrapper.astro";
 
-import kid from "../assets/svg/kid.svg";
-import glass from "../assets/svg/magnifying-glass.svg";
-import tape from "../assets/svg/measure-tape.svg";
-import muscle from "../assets/svg/muscle.svg";
-import run from "../assets/svg/run.svg";
-import sun from "../assets/svg/sun.svg";
-import tree from "../assets/svg/tree.svg";
-import OfferCard from "../components/OfferCard.astro";
+import kid from "../../assets/svg/kid.svg";
+import glass from "../../assets/svg/magnifying-glass.svg";
+import tape from "../../assets/svg/measure-tape.svg";
+import muscle from "../../assets/svg/muscle.svg";
+import run from "../../assets/svg/run.svg";
+import pain from "../../assets/svg/pain.svg";
+import sun from "../../assets/svg/sun.svg";
+import tree from "../../assets/svg/tree.svg";
+import OfferCard from "../../components/OfferCard.astro";
 
 const items = [
     {
@@ -25,7 +26,7 @@ const items = [
         title: "Budování svalové hmoty",
     },
     {
-        icon: muscle,
+        icon: pain,
         title: "Eliminace bolesti",
     },
     {
@@ -74,7 +75,7 @@ const items = [
         justify-content: center;
         column-gap: 3rem;
         row-gap: 4rem;
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
     }
     li {
