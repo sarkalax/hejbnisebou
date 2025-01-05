@@ -3,7 +3,7 @@ import Button from "./Button.astro";
 import Logo from "./Logo.astro";
 ---
 
-<header>
+<header id="header">
     <Logo />
     <nav>
         <ul>
@@ -25,31 +25,30 @@ import Logo from "./Logo.astro";
 </header>
 
 <script>
-    const header = document.querySelector("header");
-    const toggleClass = "is-sticky";
     document.addEventListener("DOMContentLoaded", () => {
+        const header = document.getElementById("header");
+
         if (!header) {
             return;
         }
-        window.addEventListener("click", () => {
-            header.style.color = "red";
+
+        let lastScroll = window.scrollY;
+        window.addEventListener("scroll", () => {
             const currentScroll = window.scrollY;
-            console.log("fs");
-            if (currentScroll > 150) {
-                header.classList.add(toggleClass);
-            } else {
-                header.classList.remove(toggleClass);
+            if (currentScroll > lastScroll) {
+                header.style.transform = "translateY(-100%)";
+            } else if (currentScroll < lastScroll) {
+                header.style.transform = "translateY(0)";
             }
+            lastScroll = currentScroll;
         });
     });
 </script>
 
 <style>
     header {
-        position: absolute;
+        position: fixed;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -57,15 +56,15 @@ import Logo from "./Logo.astro";
         padding: 1rem;
         z-index: 999;
         max-width: var(--max-container-width);
+        transition: var(--transition);
+        background: linear-gradient(
+            rgba(26, 26, 26, 0.4) 60%,
+            rgba(0, 0, 0, 0)
+        );
 
         @media only screen and (min-width: 960px) {
             padding: 1.8rem 2.5rem;
         }
-    }
-    header.is-sticky {
-        position: fixed;
-        background-color: var(--color-background);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     ul {
         display: flex;
