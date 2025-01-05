@@ -1,7 +1,6 @@
 ---
 import Button from "./Button.astro";
 import Logo from "./Logo.astro";
-import Wrapper from "./Wrapper.astro";
 ---
 
 <header>
@@ -25,6 +24,26 @@ import Wrapper from "./Wrapper.astro";
     <Button title="Kontakt" />
 </header>
 
+<script>
+    const header = document.querySelector("header");
+    const toggleClass = "is-sticky";
+    document.addEventListener("DOMContentLoaded", () => {
+        if (!header) {
+            return;
+        }
+        window.addEventListener("click", () => {
+            header.style.color = "red";
+            const currentScroll = window.scrollY;
+            console.log("fs");
+            if (currentScroll > 150) {
+                header.classList.add(toggleClass);
+            } else {
+                header.classList.remove(toggleClass);
+            }
+        });
+    });
+</script>
+
 <style>
     header {
         position: absolute;
@@ -37,12 +56,16 @@ import Wrapper from "./Wrapper.astro";
         width: 100%;
         padding: 1rem;
         z-index: 999;
-        padding-bottom: 2rem;
         max-width: var(--max-container-width);
 
         @media only screen and (min-width: 960px) {
             padding: 1.8rem 2.5rem;
         }
+    }
+    header.is-sticky {
+        position: fixed;
+        background-color: var(--color-background);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     ul {
         display: flex;

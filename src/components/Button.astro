@@ -45,7 +45,7 @@ const { title, variant = "primary" } = Astro.props;
         border: 1px solid var(--background-color);
         background-color: var(--orange-color);
         border-radius: 999px;
-        padding: 12px 16px;
+        padding: 10px 16px;
         color: var(--background-color);
     }
     .primary:hover {
@@ -66,11 +66,17 @@ const { title, variant = "primary" } = Astro.props;
         height: 1px;
         bottom: 0px;
         left: 0;
-        width: 100%;
-        background: var(--white-color);
-        transition: var(--transition);
+        width: 300%;
+        background: linear-gradient(
+            90deg,
+            var(--white-color) 33.33%,
+            transparent 33.33%,
+            transparent 66.66%,
+            var(--white-color) 66.66%
+        );
+        transition: 0.8s ease;
     }
     .secondary:hover span::after {
-        left: 100%;
+        left: -200%;
     }
 </style>

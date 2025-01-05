@@ -29,14 +29,19 @@ const { title, price, perex, packagePrice } = Astro.props;
     article {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
         position: relative;
+        gap: 2rem;
         box-shadow: 1px -1px 0 rgba(255, 170, 0, 0.4);
         border-radius: 40px;
-        width: 300px;
-        height: 400px;
+        width: 200px;
+        height: 300px;
         padding: 4.8rem 4rem;
         overflow: hidden;
+
+        @media only screen and (min-width: 600px) {
+            width: 300px;
+            height: 400px;
+        }
     }
     article::before {
         position: absolute;

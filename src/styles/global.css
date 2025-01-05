@@ -60,5 +60,9 @@ button {
 }
 .section-heading {
   text-transform: uppercase;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  
+  @media only screen and (min-width: 960px) {
+    padding-bottom: 3.5rem;
+}
 }
