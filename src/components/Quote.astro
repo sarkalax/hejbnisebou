@@ -19,7 +19,7 @@ import svg from "../assets/svg/blockquote.svg";
         font-size: 2rem;
         font-style: italic;
         text-align: center;
-        padding: 7rem 4rem;
+        padding: clamp(5rem, 10vw, 10rem) 4rem;
         color: var(--background-color);
         font-weight: 700;
         font-size: 3rem;
@@ -27,7 +27,6 @@ import svg from "../assets/svg/blockquote.svg";
     .quote {
         position: absolute;
         bottom: 80%;
-
         z-index: -1;
     }
 </style>

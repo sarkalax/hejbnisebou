@@ -2,14 +2,16 @@
 interface Props {
     title: string;
     price: string;
+    perex?: string;
     packagePrice?: string;
 }
 
-const { title, price, packagePrice } = Astro.props;
+const { title, price, perex, packagePrice } = Astro.props;
 ---
 
 <article>
     <h3>{title}</h3>
+    <p set:html={perex} />
     <h4 set:html={price} />
     {
         packagePrice && (

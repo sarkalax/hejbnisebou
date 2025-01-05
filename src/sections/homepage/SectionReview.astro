@@ -1,0 +1,107 @@
+---
+import Section from "../../components/Section.astro";
+import Wrapper from "../../components/Wrapper.astro";
+
+const items = [
+    {
+        name: "Jméno Příjmení",
+        text: "Very good, very healthy, very nice, Very good, very healthy, very nice",
+    },
+    {
+        name: "Jméno Příjmení",
+        text: "Very good, very healthy, very nice, Very good, very healthy, very nice",
+    },
+    {
+        name: "Jméno Příjmení",
+        text: "Very good, very healthy, very nice, Very good, very healthy, very nice",
+    },
+    {
+        name: "Jméno Příjmení",
+        text: "Very good, very healthy, very nice, Very good, very healthy, very nice",
+    },
+];
+---
+
+<Section title="Vaše zpětná vazba">
+    <Wrapper>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                {
+                    items.map((item) => (
+                        <div class="swiper-slide">
+                            <p>{item.text}</p>
+                            <h3>{item.name}</h3>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </Wrapper>
+</Section>
+
+<script>
+    import "swiper/css/bundle";
+    import Swiper from "swiper";
+
+    const nextButton = document.querySelector(".swiper-button-next");
+    const prevButton = document.querySelector(".swiper-button-prev");
+
+    const swiper = new Swiper(".swiper", {
+        direction: "horizontal",
+        loop: true,
+        speed: 400,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        spaceBetween: 0,
+        breakpoints: {
+            320: {
+                slidesPerView: 2,
+            },
+            640: {
+                slidesPerView: 3,
+            },
+        },
+    });
+    nextButton?.addEventListener("click", () => {
+        swiper.slideNext();
+    });
+    prevButton?.addEventListener("click", () => {
+        swiper.slidePrev();
+    });
+</script>
+
+<style>
+    .swiper {
+        max-width: 1200px;
+    }
+    .swiper-slide {
+        text-align: center;
+        padding: 3rem 3.5rem;
+    }
+    .swiper-slide h3 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        color: var(--orange-color);
+        opacity: 0.5;
+    }
+    .swiper-button-prev {
+        left: 0;
+    }
+    .swiper-button-next {
+        right: 0;
+    }
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        color: var(--orange-color);
+        opacity: 0.6;
+        transition: var(--transition);
+    }
+    .swiper-button-prev:hover::after,
+    .swiper-button-next:hover::after {
+        opacity: 1;
+    }
+</style>

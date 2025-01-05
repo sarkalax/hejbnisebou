@@ -17,8 +17,8 @@ const { title, icon } = Astro.props;
 <style>
     img {
         display: block;
-        width: 74px;
-        height: 74px;
+        width: clamp(50px, 10vw, 65px);
+        height: clamp(50px, 10vw, 65px);
         margin: auto;
         opacity: 0.5;
     }
@@ -26,7 +26,7 @@ const { title, icon } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 200px;
+        width: clamp(100px, 40vw, 200px);
         text-align: center;
         gap: 1rem;
     }
