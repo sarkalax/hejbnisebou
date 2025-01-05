@@ -29,6 +29,8 @@ import Wrapper from "./Wrapper.astro";
     header {
         position: absolute;
         top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -36,6 +38,7 @@ import Wrapper from "./Wrapper.astro";
         padding: 1rem;
         z-index: 999;
         padding-bottom: 2rem;
+        max-width: var(--max-container-width);
 
         @media only screen and (min-width: 960px) {
             padding: 1.8rem 2.5rem;

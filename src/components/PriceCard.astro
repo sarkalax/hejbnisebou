@@ -10,29 +10,30 @@ const { title, price, perex, packagePrice } = Astro.props;
 ---
 
 <article>
-    <h3>{title}</h3>
+    <h3 class="title">{title}</h3>
     <p set:html={perex} />
-    <h4 set:html={price} />
-    {
-        packagePrice && (
-            <>
-                NEBO <br />
-                <p set:html={packagePrice} />
-            </>
-        )
-    }
+    <div class="prices">
+        <h3 class="price" set:html={price} />
+        {price && packagePrice && <div>NEBO</div>}
+        {
+            packagePrice && (
+                <>
+                    <h3 set:html={packagePrice} /> / 10 tréninků
+                </>
+            )
+        }
+    </div>
 </article>
 
 <style>
     article {
         display: flex;
         flex-direction: column;
-        gap: 3rem;
+        gap: 2rem;
         position: relative;
         box-shadow: 1px -1px 0 rgba(255, 170, 0, 0.4);
         border-radius: 40px;
-        max-width: 350px;
-        width: 100%;
+        width: 300px;
         height: 400px;
         padding: 4.8rem 4rem;
         overflow: hidden;
@@ -51,10 +52,19 @@ const { title, price, perex, packagePrice } = Astro.props;
         opacity: 0.4;
     }
     h3 {
-        font-family: "SourceSans";
-        font-size: clamp(2.4rem, 3vw, 2.8rem);
-    }
-    h4 {
         font-size: clamp(2.4rem, 3vw, 3.2rem);
+    }
+    .title {
+        font-family: "SourceSans";
+        font-size: clamp(2rem, 3vw, 2.4rem);
+        text-transform: uppercase;
+    }
+    .prices {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: auto;
+        gap: 1rem;
     }
 </style>

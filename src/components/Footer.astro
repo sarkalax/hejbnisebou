@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 ---
 
 <footer>
+    <Logo />
     <div class="socials">
         <a href="https://www.instagram.com/hejbnisebou/">
             <Image src={instagram} alt="Instagram - Hejbnisebou" />
@@ -14,40 +15,54 @@ import { Image } from "astro:assets";
             <Image src={linkedin} alt="LinkedIn - Hejbnisebou" />
         </a>
     </div>
-    <Logo />
-    <p>© Hejbnisebou <span id="current-year"></span></p>
+    <p class="copyright">© Hejbnisebou <span id="current-year"></span></p>
 </footer>
 
 <script>
     const currentYear = new Date().getFullYear();
     const yearElement = document.getElementById("current-year");
-    yearElement.textContent = currentYear.toString();
+    if (yearElement) {
+        yearElement.textContent = currentYear.toString();
+    }
 </script>
 
 <style>
     footer {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
         gap: 5rem;
         padding-top: 6rem;
         padding-bottom: 3rem;
+        margin-top: clamp(5rem, 10vw, 10rem);
     }
-    p {
+    footer::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        content: "";
+        display: block;
+        height: 1px;
+        background: var(--orange-color);
+        opacity: 0.4;
+    }
+    .copyright {
         font-size: 1.6rem;
+        opacity: 0.7;
     }
     #current-year {
         font-weight: bold;
     }
     .socials {
         display: flex;
-        gap: 3rem;
+        gap: 2rem;
     }
     .socials img {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         opacity: 0.6;
         transition: var(--transition);
     }
