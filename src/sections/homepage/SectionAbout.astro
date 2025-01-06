@@ -50,10 +50,11 @@ import approach from "../../assets/img/about2.jpg";
         grid-template-columns: 1fr;
         width: 100%;
         row-gap: 2rem;
+        padding-top: clamp(2rem, 10vw, 4rem);
 
         @media only screen and (min-width: 600px) {
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-auto-rows: 1fr;
             row-gap: 0;
         }
     }
@@ -65,8 +66,10 @@ import approach from "../../assets/img/about2.jpg";
         }
     }
     img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        max-height: 500px;
     }
 </style>
