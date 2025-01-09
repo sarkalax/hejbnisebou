@@ -23,13 +23,15 @@ import Logo from "./Logo.astro";
                 <Button title="Kontakt" />
             </li>
         </ul>
-        <ul id="hamburger">
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <Button title="Kontakt" />
+        <div id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+    <a id="contact-button" href="#kontaktujte-me">
+        <Button title="Kontakt" />
+    </a>
 </header>
 
 <script>
@@ -60,6 +62,7 @@ import Logo from "./Logo.astro";
             navigation.classList.toggle("is-open");
 
             if (navigation.classList.contains("is-open")) {
+                body.style.height = "100vh";
                 body.style.overflowY = "hidden";
             } else {
                 body.style.overflowY = "auto";
@@ -96,19 +99,35 @@ import Logo from "./Logo.astro";
             padding: 1.8rem 2.5rem;
         }
     }
-    button {
-        display: none;
-
-        @media only screen and (min-width: 800px) {
-            display: block;
-        }
-    }
     #links {
         display: none;
 
-        @media only screen and (min-width: 800px) {
+        @media only screen and (min-width: 768px) {
             display: flex;
             gap: 3rem;
+        }
+    }
+    #links li {
+        position: relative;
+        overflow-x: hidden;
+    }
+    #links li::after {
+        position: absolute;
+        content: "";
+        height: 1px;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        transition: 0.3s ease;
+    }
+    #links li:hover::after {
+        background: var(--white-color);
+    }
+    #contact-button {
+        display: none;
+
+        @media only screen and (min-width: 768px) {
+            display: block;
         }
     }
     #navigation.is-open {
@@ -134,7 +153,7 @@ import Logo from "./Logo.astro";
     }
     #navigation li:last-of-type {
         display: block;
-        @media only screen and (min-width: 800px) {
+        @media only screen and (min-width: 768px) {
             display: none;
         }
     }
@@ -150,11 +169,11 @@ import Logo from "./Logo.astro";
         cursor: pointer;
         z-index: 999;
 
-        @media only screen and (min-width: 800px) {
+        @media only screen and (min-width: 768px) {
             display: none;
         }
     }
-    #hamburger li {
+    #hamburger span {
         display: block;
         width: 3rem;
         height: 0.2rem;
@@ -163,13 +182,13 @@ import Logo from "./Logo.astro";
         transform-origin: 50% 50%;
         transition: var(--transition);
     }
-    #hamburger.is-open li:nth-of-type(1) {
+    #hamburger.is-open span:nth-of-type(1) {
         transform: rotate(45deg) translateY(8px) scale(1.3);
     }
-    #hamburger.is-open li:nth-of-type(2) {
+    #hamburger.is-open span:nth-of-type(2) {
         transform: translateX(200%);
     }
-    #hamburger.is-open li:nth-of-type(3) {
+    #hamburger.is-open span:nth-of-type(3) {
         transform: rotate(-45deg) translateY(-8px) scale(1.3);
     }
 </style>
