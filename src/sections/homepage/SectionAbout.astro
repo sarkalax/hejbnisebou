@@ -58,12 +58,18 @@ import approach from "../../assets/img/about2.jpg";
             row-gap: 0;
         }
     }
-    article {
-        margin: auto 0;
-
-        @media only screen and (min-width: 600px) {
-            padding: 2rem 4rem;
+    .about-section img:nth-of-type(1) {
+        @media only screen and (max-width: 600px) {
+            max-height: 330px;
         }
+    }
+    article {
+        @media only screen and (min-width: 600px) {
+            padding: 4rem;
+        }
+    }
+    article:nth-of-type(2) {
+        padding-left: 0;
     }
     img {
         display: block;
