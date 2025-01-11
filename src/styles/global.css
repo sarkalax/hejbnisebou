@@ -37,6 +37,9 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+input, textarea {
+  color: var(--text-color);
+}
 
 h1, h2, h3, h4, blackquote {
   font-family: "Montserrat";

@@ -5,9 +5,11 @@ import Section from "../components/Section.astro";
 
 import Page from "../layouts/Page.astro";
 import SectionAbout from "../sections/homepage/SectionAbout.astro";
+import SectionContact from "../sections/homepage/SectionContact.astro";
 import SectionOffer from "../sections/homepage/SectionOffer.astro";
 import SectionPrice from "../sections/homepage/SectionPrice.astro";
 import SectionReasons from "../sections/homepage/SectionReasons.astro";
+import SectionRetreat from "../sections/homepage/SectionRetreat.astro";
 import SectionReview from "../sections/homepage/SectionReview.astro";
 ---
 
@@ -21,16 +23,6 @@ import SectionReview from "../sections/homepage/SectionReview.astro";
     <Quote />
     <SectionReview />
     <SectionPrice />
-    <Section title="Fitness kemp" />
-    <Section title="Dárkové poukazy" />
-    <Section title="Kontaktujte mě">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87092.87418389645!2d13.31797926607374!3d50.46404663802711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470a1b0fa8ba72c7%3A0x5bacbc1a9ba5d888!2sChomutov!5e1!3m2!1scs!2scz!4v1735505118339!5m2!1scs!2scz"
-            width="600"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </Section>
+    <SectionRetreat />
+    <SectionContact />
 </Page>

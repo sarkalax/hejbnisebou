@@ -1,0 +1,58 @@
+---
+import Button from "./Button.astro";
+import { Resend } from "resend";
+import { sendEmail } from "../actions/resend.ts";
+
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
+---
+
+<form
+    id="contact-form"
+    method="post"
+    action="../actions/resend.ts"
+    autocomplete="off"
+>
+    <label
+        >Jméno
+        <input type="text" name="name" id="name" placeholder="Vaše jméno" />
+    </label>
+    <label
+        >E-mail
+        <input type="email" name="email" id="email" placeholder="E-mail" />
+    </label>
+    <label
+        >Kontakt
+        <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Telefonní číslo"
+        />
+    </label>
+    <label
+        >Jméno
+        <textarea placeholder="Vaše zpráva" rows="10"></textarea>
+    </label>
+    <Button title="Odeslat" />
+</form>
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    label {
+        display: flex;
+        gap: 0.8rem;
+        flex-direction: column;
+    }
+    input,
+    textarea {
+        padding: 1rem 1.5rem;
+        border: 1px solid var(--white-color);
+        border-radius: 20px;
+        line-height: 24px;
+        background: none;
+    }
+</style>

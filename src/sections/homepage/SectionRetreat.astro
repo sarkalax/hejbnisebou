@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import Section from "../../components/Section.astro";
+import ListItem from "../../components/ListItem.astro";
+---
+
+<Section title="FITNESS KEMP">
+    <div class="wrapper">
+        <div>
+            <Image
+                src="/images/retreat.jpg"
+                alt="Hejbni sebou - retreat kemp"
+                width={600}
+                height={400}
+            />
+        </div>
+
+        <div class="content">
+            <p>Pro více informací mě kontaktujte níže</p>
+            <ul>
+                <ListItem title="pohyb" />
+                <ListItem title="pohyb" />
+                <ListItem title="pohyb" />
+            </ul>
+        </div>
+    </div>
+</Section>
+
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @media only screen and (min-width: 760px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    ul {
+        padding-top: 2rem;
+    }
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-height: 500px;
+    }
+</style>

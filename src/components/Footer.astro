@@ -8,10 +8,10 @@ import { Image } from "astro:assets";
 <footer>
     <Logo />
     <div class="socials">
-        <a href="https://www.instagram.com/hejbnisebou/">
+        <a href={import.meta.env.CONTACT_INSTAGRAM}>
             <Image src={instagram} alt="Instagram - Hejbnisebou" />
         </a>
-        <a href="">
+        <a href={import.meta.env.CONTACT_LINKEDIN}>
             <Image src={linkedin} alt="LinkedIn - Hejbnisebou" />
         </a>
     </div>
@@ -33,7 +33,7 @@ import { Image } from "astro:assets";
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 5rem;
+        gap: 2rem;
         padding-top: 6rem;
         padding-bottom: 3rem;
         margin-top: clamp(5rem, 10vw, 10rem);

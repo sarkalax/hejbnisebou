@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.1.1",
+    "resend": "^4.0.1",
     "swiper": "^11.2.0"
   }
 }
