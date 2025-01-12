@@ -5,12 +5,13 @@ import arrow from "../assets/icons/arrow.svg";
 interface Props {
     title: string;
     variant?: "primary" | "secondary";
+    type?: "button" | "submit";
 }
 
-const { title, variant = "primary" } = Astro.props;
+const { title, variant = "primary", type = "button" } = Astro.props;
 ---
 
-<button class={variant}>
+<button class={variant} type={type}>
     <svg
         width="14"
         height="14"

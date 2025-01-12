@@ -1,40 +1,62 @@
 ---
 import Button from "./Button.astro";
-import { Resend } from "resend";
-import { sendEmail } from "../actions/resend.ts";
-
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
 ---
 
-<form
-    id="contact-form"
-    method="post"
-    action="../actions/resend.ts"
-    autocomplete="off"
->
+<form method="post" id="contact-form" autocomplete="off">
     <label
-        >Jméno
-        <input type="text" name="name" id="name" placeholder="Vaše jméno" />
+        >Jméno*
+        <input type="text" name="name" placeholder="Jméno" required />
+        <p class="error-message" id="name-error"></p>
     </label>
     <label
-        >E-mail
+        >E-mail*
         <input type="email" name="email" id="email" placeholder="E-mail" />
+        <p class="error-message" id="email-error"></p>
     </label>
     <label
-        >Kontakt
-        <input
-            type="text"
-            name="phone"
-            id="phone"
-            placeholder="Telefonní číslo"
-        />
+        >Zpráva*
+        <textarea placeholder="Vaše zpráva" name="message" rows="10" required
+        ></textarea>
+        <p class="error-message" id="message-error"></p>
     </label>
-    <label
-        >Jméno
-        <textarea placeholder="Vaše zpráva" rows="10"></textarea>
-    </label>
-    <Button title="Odeslat" />
+    <Button title="Odeslat" type="submit" />
 </form>
+
+<script>
+    import { isInputError, actions } from "astro:actions";
+
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const { data, error } = await actions.contactForm(formData);
+
+        document.querySelectorAll(".error-message").forEach((errorElement) => {
+            errorElement.textContent = "";
+        });
+        const name = document.getElementById("name-error");
+        const email = document.getElementById("email-error");
+        const message = document.getElementById("message-error");
+
+        if (data) {
+            form.reset();
+        }
+        console.log({ error });
+
+        if (error && isInputError(error)) {
+            if (error.fields.name) {
+                name.textContent = "Toto pole je povinné";
+            }
+            if (error.fields.email) {
+                email.textContent = "Toto pole je povinné";
+            }
+            if (error.fields.message) {
+                message.textContent = "Toto pole je povinné";
+            }
+        }
+    });
+</script>
 
 <style>
     form {
@@ -54,5 +76,13 @@ const resend = new Resend(import.meta.env.RESEND_API_KEY);
         border-radius: 20px;
         line-height: 24px;
         background: none;
+    }
+    input:focus-visible {
+        outline-color: var(--orange-color);
+    }
+    .error-message {
+        color: var(--orange-color);
+        opacity: 0.7;
+        font-size: 1rem;
     }
 </style>

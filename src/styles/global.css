@@ -46,6 +46,10 @@ h1, h2, h3, h4, blackquote {
   color: var(--white-color);
 }
 
+a {
+  width: max-content;
+}
+
 a, a:visited {
   color: var(--white-color);
   text-decoration: none;
@@ -61,8 +65,17 @@ ul li {
   list-style: none;
 }
 
+*:focus-visible {
+  outline-color: var(--orange-color);
+}
+
 .highlight-text {
   color: var(--white-color);
+}
+.highlight-orange-text {
+  color: var(--orange-color);
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 .section-heading {
   text-transform: uppercase;
