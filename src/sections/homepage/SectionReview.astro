@@ -4,16 +4,16 @@ import Wrapper from "../../components/Wrapper.astro";
 
 const items = [
     {
-        name: "Mathias (46)",
-        text: "I gain within three months soo many muscles 💪 with Kristyna that all my shirts don’t fit anymore. I feel more healthy and I’m much stronger. Now we work together on me getting a sixpack. Training with her never gets boring as she varies it a lot and adopts it to my needs",
+        name: "Ivana (51)",
+        text: "Každý máme své tělo jinak schopné a můžete vzít jed na to, že dříve, či později spolu s ní (a DÍKY ní !!!) objevíte, co nefunguje a co je třeba s tím udělat. <br/> Mám tu holku vážně moc ráda, vždy se na cvičení s ní těším.  Cvičení se mi stalo pevným bodem mého týdenního programu.<br/> Čistí mi hlavu, uvolňuje dlouhodobě ztuhlá místa, posouvá hranice ve vnímání svého těla i hranice jeho pohyblivosti … a co si budeme povídat, díky cvičení s ní jsem si oblíbila tílka! Přece ty vymakané ruce nebudu schovávat! … a co teprve lýtka, stehna… a tak dááál. Chodím k ní já a začal k ní chodit můj syn.",
     },
     {
-        name: "Mathias (46)",
-        text: "I gain within three months soo many muscles 💪 with Kristyna that all my shirts don’t fit anymore. I feel more healthy and I’m much stronger. Now we work together on me getting a sixpack. Training with her never gets boring as she varies it a lot and adopts it to my needs",
+        name: "Jitka (49) a Klárka (17)",
+        text: "Kristýna je jako trenérka úžasná. S tímto způsobem cvičení jsem se nikdy nepotkala, cvičit jsem začala spolu s dcerou, která potřebovala podporu do začátku. Kristýna sestavila trénink jak pro mne, tak pro dceru. Každé to, co jsme potřebovaly a ani netušily, co všechno zvládneme.",
     },
     {
-        name: "Mathias (46)",
-        text: "I gain within three months soo many muscles 💪 with Kristyna that all my shirts don’t fit anymore. I feel more healthy and I’m much stronger. Now we work together on me getting a sixpack. Training with her never gets boring as she varies it a lot and adopts it to my needs",
+        name: "Petra (53)",
+        text: "S Týnkou cvičím už víc než rok. Nikdy před tím jsem necvičila. Měla jsem velmi silné bolesti spojené s vyhřezlou ploténkou a další problémy zaviněné sedavým způsobem života. V té době jsem si myslela, že skončím co nevidět v invalidním důchodu.  Začala jsem s ní chodit cvičit a bolest začala postupně mizet. Už za pár týdnů byla prakticky pryč. Co se mi na Týnce líbí je, že se zajímá o to, co při cvičení (i po něm) cítím, jestli mě něco nebolí, a jestli nemám nějaké další obtíže. Cvičení přizpůsobuje mým potřebám. To, že mi do života vstoupila trenérka Týnka, byla velké štěstí. Ona ví, co dělá, je na ni vidět, že jí to baví, je empatická a je důsledná.",
     },
     {
         name: "Mathias (46)",
@@ -22,14 +22,14 @@ const items = [
 ];
 ---
 
-<Section title="Vaše zpětná vazba">
+<Section title="Klienti o mně říkají">
     <Wrapper>
         <div class="swiper">
             <div class="swiper-wrapper">
                 {
                     items.map((item) => (
                         <div class="swiper-slide">
-                            <p>{item.text}</p>
+                            <p set:html={item.text} />
                             <h3>{item.name}</h3>
                         </div>
                     ))
@@ -80,6 +80,7 @@ const items = [
     }
     .swiper-slide {
         text-align: center;
+        align-self: center;
         padding: 3rem 3.5rem;
     }
     .swiper-slide h3 {

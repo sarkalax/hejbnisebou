@@ -1,6 +1,7 @@
 ---
 import Section from "../../components/Section.astro";
 import Wrapper from "../../components/Wrapper.astro";
+import { Tab, TabItem } from "free-astro-components";
 
 import kid from "../../assets/svg/kid.svg";
 import glass from "../../assets/svg/magnifying-glass.svg";
@@ -10,72 +11,123 @@ import run from "../../assets/svg/run.svg";
 import pain from "../../assets/svg/pain.svg";
 import sun from "../../assets/svg/sun.svg";
 import tree from "../../assets/svg/tree.svg";
+import shrimp from "../../assets/svg/shrimp.svg";
+import body from "../../assets/svg/body.svg";
+import waist from "../../assets/svg/waist.svg";
+import heart from "../../assets/svg/heart.svg";
+import stretch from "../../assets/svg/stretch.svg";
+import rope from "../../assets/svg/rope.svg";
 import OfferCard from "../../components/OfferCard.astro";
 
 const items = [
     {
         icon: glass,
         title: "Diagnostika",
+        category: "individual",
     },
     {
         icon: tape,
         title: "Redukce váhy",
+        category: "individual",
     },
     {
         icon: muscle,
         title: "Budování svalové hmoty",
+        category: "individual",
     },
     {
         icon: pain,
         title: "Eliminace bolesti",
+        category: "individual",
     },
     {
         icon: tree,
         title: "Trénink venku",
+        category: "individual",
     },
     {
         icon: run,
         title: "Goata (biomechanika pohybu)",
+        category: "individual",
     },
     {
         icon: kid,
         title: "Dětský pohybový kroužek",
+        category: "individual",
     },
     {
         icon: sun,
         title: "Fitness kemp",
+        category: "individual",
+    },
+    {
+        icon: shrimp,
+        title: "Zdravá záda/corporate shrimp",
+        category: "skupinovky",
+    },
+    {
+        icon: waist,
+        title: "Hubnutí a kondice",
+        category: "skupinovky",
+    },
+    {
+        icon: muscle,
+        title: "Síla a svaly",
+        category: "skupinovky",
+    },
+    {
+        icon: run,
+        title: "Goata (biomechanika pohybu)",
+        category: "skupinovky",
+    },
+    {
+        icon: heart,
+        title: "Hyrox (týmový trénink)",
+        category: "skupinovky",
+    },
+    {
+        icon: body,
+        title: "Cvičení s vlastní vahou",
+        category: "skupinovky",
+    },
+    {
+        icon: rope,
+        title: "Švihadlo",
+        category: "skupinovky",
+    },
+    {
+        icon: stretch,
+        title: "Mobilita a kompenzace",
+        category: "skupinovky",
+    },
+    {
+        icon: kid,
+        title: "Dětský pohybový kroužek",
+        category: "skupinovky",
     },
 ];
+
+const individual = items.filter((item) => item.category === "individual");
+const skupinovky = items.filter((item) => item.category === "skupinovky");
 ---
 
-<Section title="Co nabízím">
+<Section
+    title="Co nabízím"
+    perex=`Nabízím individuální tréninky šité na míru vašim cílům i skupinové lekce plné energie, zábavy a motivace. Nabídku můžete vidět níže`
+>
     <Wrapper>
-        <ul>
-            {
-                items.map((item) => {
-                    if (!item.title) {
-                        return null;
-                    }
-
-                    return (
-                        <li>
-                            <OfferCard {...item} />
-                        </li>
-                    );
-                })
-            }
-        </ul>
+        <Tab
+            tabs={[
+                { label: "INDIVIDUAL", active: true },
+                { label: "SKUPINOVKY" },
+            ]}
+        >
+            <TabItem active
+                >{individual.map((item) => <OfferCard {...item} />)}</TabItem
+            >
+            <TabItem
+                >{skupinovky.map((item) => <OfferCard {...item} />)}</TabItem
+            >
+        </Tab>
     </Wrapper>
 </Section>
-
-<style>
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        column-gap: 3rem;
-        row-gap: 4rem;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-</style>
