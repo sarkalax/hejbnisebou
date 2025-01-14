@@ -56,6 +56,7 @@ const { title, variant = "primary", type = "button" } = Astro.props;
     }
     .secondary {
         color: var(--white-color);
+        font-size: 2rem;
     }
     .secondary span {
         position: relative;
@@ -78,6 +79,8 @@ const { title, variant = "primary", type = "button" } = Astro.props;
         transition: 0.8s ease;
     }
     .secondary:hover span::after {
-        left: -200%;
+        @media only screen and (min-width: 768px) {
+            left: -200%;
+        }
     }
 </style>

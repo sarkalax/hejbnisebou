@@ -14,13 +14,18 @@ import Logo from "./Logo.astro";
                 <a href="#co-nabizim">služby</a>
             </li>
             <li>
-                <a href="#cenik">ceník</a>
+                <a href="#cenik">fitness kemp</a>
             </li>
             <li>
                 <a href="#cenik">dárkové poukazy</a>
             </li>
             <li>
-                <Button title="Kontakt" />
+                <a href="#cenik">ceník</a>
+            </li>
+            <li>
+                <a href="#kontaktuj-me">
+                    <Button title="Kontakt" />
+                </a>
             </li>
         </ul>
         <div id="hamburger">
@@ -55,6 +60,13 @@ import Logo from "./Logo.astro";
                 header.style.transform = "translateY(0)";
             }
             lastScroll = currentScroll;
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                navigation.classList.remove("is-open");
+                body.style.overflowY = "auto";
+            }
         });
 
         hamburger.addEventListener("click", () => {
@@ -120,6 +132,10 @@ import Logo from "./Logo.astro";
         left: 0;
         width: 100%;
         transition: 0.3s ease;
+
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
     }
     #links li:hover::after {
         background: var(--white-color);
