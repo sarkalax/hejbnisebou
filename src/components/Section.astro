@@ -20,14 +20,14 @@ const id = title
         <h2 class="section-heading">
             {title}
         </h2>
-        <p set:html={perex} class="perex" />
+        {perex && <p set:html={perex} class="perex" />}
+        <slot />
     </div>
-    <slot />
 </Wrapper>
 
 <style>
     div {
-        padding: 5rem 0;
+        padding-bottom: 5rem;
         width: 100%;
 
         @media only screen and (min-width: 960px) {
@@ -42,6 +42,7 @@ const id = title
         font-size: 1.8rem;
         line-height: 1.5;
         color: var(--text-color);
+        padding-bottom: 4rem;
         max-width: 80vw;
         margin: 0 auto;
     }

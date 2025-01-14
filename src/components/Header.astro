@@ -51,7 +51,7 @@ import Logo from "./Logo.astro";
             const currentScroll = window.scrollY;
             if (currentScroll > lastScroll) {
                 header.style.transform = "translateY(-100%)";
-            } else if (currentScroll < lastScroll) {
+            } else if (currentScroll < lastScroll || currentScroll === 0) {
                 header.style.transform = "translateY(0)";
             }
             lastScroll = currentScroll;
@@ -81,19 +81,20 @@ import Logo from "./Logo.astro";
 <style>
     header {
         position: fixed;
-        top: 0;
         display: flex;
+        top: 0;
+        left: 0;
+        right: 0;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
-        padding: 1rem;
-        z-index: 999;
+        padding: 2rem;
         max-width: var(--max-container-width);
         transition: var(--transition);
         background: linear-gradient(
             rgba(26, 26, 26, 0.4) 60%,
             rgba(0, 0, 0, 0)
         );
+        z-index: 999;
 
         @media only screen and (min-width: 960px) {
             padding: 1.8rem 2.5rem;

@@ -1,27 +1,57 @@
 ---
 import { Image } from "astro:assets";
 import Section from "../../components/Section.astro";
-import ListItem from "../../components/ListItem.astro";
+import image from "../../assets/img/retreat.jpg";
 ---
 
-<Section title="FITNESS KEMP">
+<Section
+    title="FITNESS KEMP"
+    perex="Uteč před sychravým říjnem do luxusní vily na Kypru a <span class='highlight-text'>zacvič si se mnou v teple.</span>"
+>
     <div class="wrapper">
-        <div>
-            <Image
-                src="/images/retreat.jpg"
-                alt="Hejbni sebou - retreat kemp"
-                width={600}
-                height={400}
-            />
-        </div>
+        <Image
+            src={image}
+            alt="Hejbni sebou - retreat kemp"
+            width={600}
+            height={400}
+        />
 
         <div class="content">
-            <p>Pro více informací mě kontaktujte níže.</p>
+            <p>
+                Sportovní týden v Ayia Napa! Naše vila je pár metrů od klidné
+                pláže. V dochozí vzdálenosti je národní park se spoustou
+                přírodních památek. Kypr v tomto období nabízí ideální počasí
+                pro sport a příjemně vyhřáté moře.
+            </p>
+
             <ul>
-                <ListItem title="pohyb" />
-                <ListItem title="pohyb" />
-                <ListItem title="pohyb" />
+                <li>
+                    <span class="highlight-text">Kdo:</span>
+                    Skupina čtyř lidí + já a asistentka
+                </li>
+                <li>
+                    <span class="highlight-text">Termín:</span>
+                    29.9. - 6.10. 2025
+                </li>
+                <li>
+                    <span class="highlight-text"> Lokace:</span>
+                    Ayia Napa, Kypr
+                </li>
+                <li>
+                    <span class="highlight-text"> Co tě čeká:</span>
+                    Pohyb, dobrá nálada a sluníčko!
+                </li>
             </ul>
+            <p>
+                Více informací na
+                <a href={import.meta.env.CONTACT_INSTAGRAM}> Instagramu </a>
+                a
+                <a href={import.meta.env.CONTACT_LINKEDIN}> Linkedin</a>
+                , případně napiš na
+                <a href="mailto:hejbnisebou@gmail?subject=Fitness Kemp">
+                    hejbnisebou@gmail.com
+                </a>
+            </p>
         </div>
     </div>
 </Section>
@@ -30,20 +60,45 @@ import ListItem from "../../components/ListItem.astro";
     .wrapper {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 2rem;
 
         @media only screen and (min-width: 760px) {
             grid-template-columns: repeat(2, 1fr);
         }
     }
-    ul {
-        padding-top: 2rem;
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 2rem;
+        padding-left: 0;
+        gap: 2rem;
+
+        @media only screen and (min-width: 760px) {
+            padding: 4rem;
+        }
     }
     img {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        max-height: 500px;
+        max-height: 400px;
+        filter: grayscale(100%);
+        @media only screen and (max-width: 760px) {
+            order: 2;
+        }
+    }
+    li {
+        align-self: center;
+        position: relative;
+        margin-left: 2.5rem;
+        padding-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+    li::before {
+        position: absolute;
+        left: -2.5rem;
+        /* top: -0.2rem; */
+        content: url('data:image/svg+xml, <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" ><path d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z" fill="orange"></path></svg>');
     }
 </style>
