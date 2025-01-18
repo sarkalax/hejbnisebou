@@ -8,23 +8,23 @@
 }
 
 :root {
-    --background-color: #1A1A1A;
-    --white-color: #FFFFFF;
-    --text-color: #cacaca;
-    --orange-color: #FFAA00;
-    --max-container-width: 1370px;
-    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 62.5%;
+  --background-color: #1a1a1a;
+  --white-color: #ffffff;
+  --text-color: #cacaca;
+  --orange-color: #ffaa00;
+  --max-container-width: 1370px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 62.5%;
 }
 
 * {
   padding: 0;
-  margin:0;
+  margin: 0;
   box-sizing: border-box;
 }
 *::selection {
   background: var(--orange-color);
-  color: var(--background-color)
+  color: var(--background-color);
 }
 
 html,
@@ -36,11 +36,16 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-input, textarea {
+input,
+textarea {
   color: var(--text-color);
 }
 
-h1, h2, h3, h4, blackquote {
+h1,
+h2,
+h3,
+h4,
+blackquote {
   font-family: "Montserrat";
   color: var(--white-color);
 }
@@ -49,7 +54,8 @@ a {
   width: max-content;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: var(--white-color);
   text-decoration: none;
 }
@@ -79,12 +85,12 @@ ul li {
 .section-heading {
   text-transform: uppercase;
   padding-bottom: 3rem;
-  
+
   @media only screen and (min-width: 960px) {
     padding-bottom: 3.5rem;
   }
 }
- .ac-tab-header {
+.ac-tab-header {
   box-shadow: none !important;
   justify-content: center !important;
   gap: 2rem !important;
@@ -93,7 +99,7 @@ ul li {
 .ac-tab-button {
   color: var(--white-color) !important;
   font-size: 2rem !important;
-  font-family: "Montserrat" !important; 
+  font-family: "Montserrat" !important;
 }
 .ac-tab-button[aria-selected="true"] {
   position: relative;
@@ -111,7 +117,7 @@ ul li {
 }
 
 .ac-tab-pane[aria-hidden="false"] {
-  display: flex !important; 
+  display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
   column-gap: 3rem;

@@ -1,14 +1,19 @@
 {
-  "name": "",
+  "name": "hejbnisebou",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "npx prettier --write **/*.astro ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vercel": "^8.0.2",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "astro": "^5.1.1",
     "free-astro-components": "^1.1.1",
     "resend": "^4.0.1",
