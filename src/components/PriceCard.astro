@@ -11,9 +11,15 @@ const { title, price, perex, packagePrice } = Astro.props;
 
 <article>
     <h3 class="title">{title}</h3>
-    <p set:html={perex} />
+    <p class="perex" set:html={perex} />
     <div class="prices">
-        <h3 class="price" set:html={price} />
+        {
+            price && (
+                <div>
+                    <h3 class="price" set:html={price} /> /hod
+                </div>
+            )
+        }
         {price && packagePrice && <div>NEBO</div>}
         {
             packagePrice && (
@@ -43,7 +49,7 @@ const { title, price, perex, packagePrice } = Astro.props;
             height: 400px;
         }
     }
-    article::before {
+    article::after {
         position: absolute;
         inset: 0;
         display: block;
@@ -58,6 +64,7 @@ const { title, price, perex, packagePrice } = Astro.props;
     }
     h3 {
         font-size: clamp(2.4rem, 3vw, 3.2rem);
+        display: inline-block;
     }
     .title {
         font-family: "SourceSans";
@@ -71,5 +78,8 @@ const { title, price, perex, packagePrice } = Astro.props;
         align-items: flex-start;
         margin-top: auto;
         gap: 1rem;
+    }
+    .perex {
+        text-align: block;
     }
 </style>

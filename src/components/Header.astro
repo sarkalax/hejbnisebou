@@ -97,20 +97,33 @@ import Logo from "./Logo.astro";
         top: 0;
         left: 0;
         right: 0;
+        width: 100%;
+        margin: 0 auto;
         justify-content: space-between;
         align-items: center;
         padding: 2rem;
         max-width: var(--max-container-width);
         transition: var(--transition);
-        background: linear-gradient(
-            rgba(26, 26, 26, 0.4) 60%,
-            rgba(0, 0, 0, 0)
-        );
         z-index: 999;
 
         @media only screen and (min-width: 960px) {
             padding: 1.8rem 2.5rem;
         }
+    }
+    header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin-left: -100vh;
+        margin-right: -100vh;
+        height: 100%;
+        background: linear-gradient(
+            rgba(26, 26, 26, 0.4) 60%,
+            rgba(0, 0, 0, 0)
+        );
+        z-index: -1;
     }
     #links {
         display: none;
