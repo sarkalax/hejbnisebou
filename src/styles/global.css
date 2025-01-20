@@ -95,11 +95,11 @@ ul li {
   justify-content: center !important;
   gap: clamp(0.5rem, 5wv ,2rem) !important;
   padding-bottom: 3rem !important;
-  overflow: hidden !important;
+ 
 }
 .ac-tab-button {
   color: var(--white-color) !important;
-  font-size: 2rem !important;
+  font-size: clamp(1.5rem, 5vw, 2rem) !important;
   font-family: "Montserrat" !important;
 }
 .ac-tab-button[aria-selected="true"] {

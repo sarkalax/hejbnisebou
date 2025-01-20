@@ -115,19 +115,12 @@ const skupinovky = items.filter((item) => item.category === "skupinovky");
     title="Co nabízím"
     perex=`Nabízím <span class="highlight-text">individuální</span> tréninky šité na míru vašim cílům i <span class="highlight-text">skupinové</span> lekce plné energie, zábavy a motivace. Nabídku můžete vidět níže`
 >
-    <Wrapper>
-        <Tab
-            tabs={[
-                { label: "INDIVIDUAL", active: true },
-                { label: "SKUPINOVKY" },
-            ]}
+    <Tab
+        tabs={[{ label: "INDIVIDUAL", active: true }, { label: "SKUPINOVKY" }]}
+    >
+        <TabItem active
+            >{individual.map((item) => <OfferCard {...item} />)}</TabItem
         >
-            <TabItem active
-                >{individual.map((item) => <OfferCard {...item} />)}</TabItem
-            >
-            <TabItem
-                >{skupinovky.map((item) => <OfferCard {...item} />)}</TabItem
-            >
-        </Tab>
-    </Wrapper>
+        <TabItem>{skupinovky.map((item) => <OfferCard {...item} />)}</TabItem>
+    </Tab>
 </Section>
