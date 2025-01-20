@@ -93,8 +93,9 @@ ul li {
 .ac-tab-header {
   box-shadow: none !important;
   justify-content: center !important;
-  gap: 2rem !important;
+  gap: clamp(0.5rem, 5wv ,2rem) !important;
   padding-bottom: 3rem !important;
+  overflow: hidden !important;
 }
 .ac-tab-button {
   color: var(--white-color) !important;

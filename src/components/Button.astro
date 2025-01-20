@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import arrow from "../assets/icons/arrow.svg";
-
 interface Props {
     title: string;
     variant?: "primary" | "secondary";
@@ -57,6 +54,7 @@ const { title, variant = "primary", type = "button" } = Astro.props;
     .secondary {
         color: var(--white-color);
         font-size: 2rem;
+        line-height: 2rem;
     }
     .secondary span {
         position: relative;
