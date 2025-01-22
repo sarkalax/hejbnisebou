@@ -16,8 +16,9 @@ import ContactForm from "../../components/ContactForm.astro";
             >
                 +420 733 220 702
             </a><br /> nebo přes <br />
-            <a href="mailto:hejbnisebou@gmail.com" class="highlight-orange-text"
-                >hejbnisebou@gmail.com</a
+            <a
+                href={`mailto:${import.meta.env.CONTACT_EMAIL}`}
+                class="highlight-orange-text">hejbnisebou@gmail.com</a
             >
         </p>
         <div class="map-container">
