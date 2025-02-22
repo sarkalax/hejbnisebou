@@ -16,7 +16,7 @@ const { title, price, perex, packagePrice } = Astro.props;
         {
             price && (
                 <div>
-                    <h3 class="price" set:html={price} /> /hod
+                    <h3 class="price" set:html={price} /> /trénink
                 </div>
             )
         }
@@ -36,11 +36,12 @@ const { title, price, perex, packagePrice } = Astro.props;
         display: flex;
         flex-direction: column;
         position: relative;
+        justify-content: space-between;
         gap: 2rem;
         box-shadow: 1px -1px 0 rgba(255, 170, 0, 0.4);
         border-radius: 40px;
         width: 300px;
-        height: 400px;
+        min-height: 100%;
         padding: 4.8rem 4rem;
         overflow: hidden;
     }
