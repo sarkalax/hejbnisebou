@@ -76,6 +76,7 @@ ul li {
 
 .highlight-text {
   color: var(--white-color);
+  font-weight: 600;
 }
 .highlight-orange-text {
   color: var(--orange-color);
