@@ -10,11 +10,11 @@
     "format": "npx prettier --write **/*.astro ."
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/vercel": "^8.0.2",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/vercel": "^9.0.1",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
-    "astro": "^5.1.1",
+    "astro": "^5.16.0",
     "dotenv": "^16.4.7",
     "free-astro-components": "^1.1.1",
     "resend": "^4.0.1",
