@@ -1,8 +1,8 @@
 ---
-import Logo from "./Logo.astro";
-import instagram from "../assets/svg/instagram.svg";
-import linkedin from "../assets/svg/linkedin.svg";
-import { Image } from "astro:assets";
+import Logo from "./Logo.astro"
+import instagram from "../assets/svg/instagram.svg"
+import linkedin from "../assets/svg/linkedin.svg"
+import { Image } from "astro:assets"
 ---
 
 <footer>
@@ -15,14 +15,18 @@ import { Image } from "astro:assets";
             <Image src={linkedin} alt="LinkedIn - Hejbnisebou" />
         </a>
     </div>
-    <p class="copyright">© Hejbnisebou <span id="current-year"></span></p>
+    <p class="copyright">
+        © Hejbnisebou
+        <span id="current-year"></span><br />
+        <a href="mailto:info@sarkalaxova.com">by sarkalaxova</a>
+    </p>
 </footer>
 
 <script>
-    const currentYear = new Date().getFullYear();
-    const yearElement = document.getElementById("current-year");
+    const currentYear = new Date().getFullYear()
+    const yearElement = document.getElementById("current-year")
     if (yearElement) {
-        yearElement.textContent = currentYear.toString();
+        yearElement.textContent = currentYear.toString()
     }
 </script>
 
@@ -51,6 +55,10 @@ import { Image } from "astro:assets";
     }
     .copyright {
         font-size: 1.6rem;
+        opacity: 0.7;
+        text-align: center;
+    }
+    .copyright a {
         opacity: 0.7;
     }
     #current-year {
