@@ -1,8 +1,8 @@
 ---
-import { Image } from "astro:assets";
-import Button from "./Button.astro";
-import Wrapper from "./Wrapper.astro";
-import image from "../assets/img/hero.jpg";
+import { Image } from "astro:assets"
+import image from "../assets/img/hero.jpg"
+import Button from "./Button.astro"
+import Wrapper from "./Wrapper.astro"
 ---
 
 <div class="hero">
@@ -59,6 +59,8 @@ import image from "../assets/img/hero.jpg";
     .hero-content {
         position: absolute;
         font-size: 2rem;
+        left: 0;
+        padding-inline: 2rem;
         bottom: 0;
         color: var(--text-color);
         display: flex;

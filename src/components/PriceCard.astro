@@ -11,7 +11,7 @@ const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
 ---
 
 <article>
-    <h3 class="title">{title}</h3>
+    <h3 class="title" set:html={title} />
     <p class="perex" set:html={perex} />
     <div class="prices">
         {
