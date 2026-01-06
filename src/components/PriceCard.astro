@@ -1,12 +1,13 @@
 ---
 interface Props {
-    title: string;
-    price?: string;
-    perex?: string;
-    packagePrice?: string;
+    title: string
+    price?: string
+    perex?: string
+    packagePrice?: string
+    packageNumber?: number
 }
 
-const { title, price, perex, packagePrice } = Astro.props;
+const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
 ---
 
 <article>
@@ -24,7 +25,7 @@ const { title, price, perex, packagePrice } = Astro.props;
         {
             packagePrice && (
                 <>
-                    <h3 set:html={packagePrice} /> / 10 tréninků
+                    <h3 set:html={packagePrice} /> / {packageNumber} tréninků
                 </>
             )
         }

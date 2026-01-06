@@ -1,0 +1,90 @@
+---
+import { Image } from "astro:assets"
+import Section from "../../components/Section.astro"
+import Wrapper from "../../components/Wrapper.astro"
+
+import client1 from "../../assets/img/client1.jpg"
+import client2 from "../../assets/img/client2.jpg"
+import client3 from "../../assets/img/client3.jpg"
+---
+
+<Section title="">
+    <Wrapper>
+        <div class="relative">
+            <div class="clients">
+                <Image
+                    src={client1}
+                    alt="Kristýna Ivančíková - cvičení s klientem"
+                    width={595}
+                    height={870}
+                />
+                <Image
+                    src={client3}
+                    alt="Kristýna Ivančíková - cvičení s klientem"
+                    width={595}
+                    height={870}
+                />
+                <Image
+                    src={client2}
+                    alt="Kristýna Ivančíková - cvičení s klientem"
+                    width={595}
+                    height={870}
+                />
+            </div>
+        </div>
+    </Wrapper>
+</Section>
+
+<style>
+    .relative {
+        position: relative;
+        margin-inline: -2rem;
+    }
+    .clients {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        user-select: none;
+    }
+    .clients::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15vw;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+            to right,
+            rgb(26, 26, 26, 1),
+            rgba(26, 26, 26, 0)
+        );
+    }
+
+    .clients::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15vw;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+            to left,
+            rgb(26, 26, 26, 1),
+            rgba(26, 26, 26, 0)
+        );
+    }
+
+    .clients img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-height: 500px;
+    }
+</style>

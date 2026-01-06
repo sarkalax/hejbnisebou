@@ -1,6 +1,6 @@
 ---
-import Button from "./Button.astro";
-import Logo from "./Logo.astro";
+import Button from "./Button.astro"
+import Logo from "./Logo.astro"
 ---
 
 <header>
@@ -12,9 +12,6 @@ import Logo from "./Logo.astro";
             </li>
             <li>
                 <a href="#co-nabizim">služby</a>
-            </li>
-            <li>
-                <a href="#fitness-kemp">fitness kemp</a>
             </li>
             <li>
                 <a href="#cenik">dárkové poukazy</a>
@@ -41,58 +38,58 @@ import Logo from "./Logo.astro";
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const body = document.body;
-        const header = document.querySelector("header");
-        const navigation = document.getElementById("navigation");
-        const hamburger = document.getElementById("hamburger");
-        const links = document.querySelectorAll("#links a");
+        const body = document.body
+        const header = document.querySelector("header")
+        const navigation = document.getElementById("navigation")
+        const hamburger = document.getElementById("hamburger")
+        const links = document.querySelectorAll("#links a")
 
         if (!header || !hamburger || !navigation) {
-            return;
+            return
         }
 
-        let lastScroll = window.scrollY;
+        let lastScroll = window.scrollY
         window.addEventListener("scroll", () => {
-            const currentScroll = window.scrollY;
+            const currentScroll = window.scrollY
 
             if (window.innerWidth > 768) {
                 if (currentScroll < lastScroll || currentScroll === 0) {
-                    header.style.transform = "translateY(0)";
+                    header.style.transform = "translateY(0)"
                 } else if (currentScroll > lastScroll) {
-                    header.style.transform = "translateY(-100%)";
+                    header.style.transform = "translateY(-100%)"
                 }
             } else {
-                header.style.transform = "translateY(0)";
+                header.style.transform = "translateY(0)"
             }
-            lastScroll = currentScroll;
-        });
+            lastScroll = currentScroll
+        })
 
         window.addEventListener("resize", () => {
             if (window.innerWidth > 768) {
-                navigation.classList.remove("is-open");
-                body.style.overflowY = "auto";
+                navigation.classList.remove("is-open")
+                body.style.overflowY = "auto"
             }
-        });
+        })
 
         hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("is-open");
-            navigation.classList.toggle("is-open");
+            hamburger.classList.toggle("is-open")
+            navigation.classList.toggle("is-open")
 
             if (navigation.classList.contains("is-open")) {
-                body.style.height = "100vh";
-                body.style.overflowY = "hidden";
+                body.style.height = "100vh"
+                body.style.overflowY = "hidden"
             } else {
-                body.style.overflowY = "auto";
+                body.style.overflowY = "auto"
             }
-        });
+        })
         links.forEach((link) => {
             link.addEventListener("click", () => {
-                hamburger.classList.remove("is-open");
-                navigation.classList.remove("is-open");
-                document.body.style.overflowY = "auto";
-            });
-        });
-    });
+                hamburger.classList.remove("is-open")
+                navigation.classList.remove("is-open")
+                document.body.style.overflowY = "auto"
+            })
+        })
+    })
 </script>
 
 <style>

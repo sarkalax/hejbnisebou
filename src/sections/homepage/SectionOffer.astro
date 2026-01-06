@@ -1,23 +1,14 @@
 ---
-import Section from "../../components/Section.astro";
-import Wrapper from "../../components/Wrapper.astro";
-import { Tab, TabItem } from "free-astro-components";
+import { Tab, TabItem } from "free-astro-components"
+import Section from "../../components/Section.astro"
 
-import kid from "../../assets/svg/kid.svg";
-import glass from "../../assets/svg/magnifying-glass.svg";
-import tape from "../../assets/svg/measure-tape.svg";
-import muscle from "../../assets/svg/muscle.svg";
-import run from "../../assets/svg/run.svg";
-import pain from "../../assets/svg/pain.svg";
-import sun from "../../assets/svg/sun.svg";
-import tree from "../../assets/svg/tree.svg";
-import shrimp from "../../assets/svg/shrimp.svg";
-import body from "../../assets/svg/body.svg";
-import waist from "../../assets/svg/waist.svg";
-import heart from "../../assets/svg/heart.svg";
-import stretch from "../../assets/svg/stretch.svg";
-import rope from "../../assets/svg/rope.svg";
-import OfferCard from "../../components/OfferCard.astro";
+import kid from "../../assets/svg/kid.svg"
+import glass from "../../assets/svg/magnifying-glass.svg"
+import muscle from "../../assets/svg/muscle.svg"
+import pain from "../../assets/svg/pain.svg"
+import run from "../../assets/svg/run.svg"
+import shrimp from "../../assets/svg/shrimp.svg"
+import OfferCard from "../../components/OfferCard.astro"
 
 const items = [
     {
@@ -26,13 +17,8 @@ const items = [
         category: "individual",
     },
     {
-        icon: tape,
-        title: "Redukce váhy",
-        category: "individual",
-    },
-    {
         icon: muscle,
-        title: "Budování svalové hmoty",
+        title: "Budování síly a kondice",
         category: "individual",
     },
     {
@@ -41,63 +27,18 @@ const items = [
         category: "individual",
     },
     {
-        icon: tree,
-        title: "Trénink venku",
-        category: "individual",
-    },
-    {
-        icon: run,
-        title: "Goata (biomechanika pohybu)",
-        category: "individual",
-    },
-    {
-        icon: kid,
-        title: "Dětský pohybový kroužek",
-        category: "individual",
-    },
-    {
-        icon: sun,
-        title: "Fyzio fitness kemp",
-        category: "individual",
-    },
-    {
         icon: shrimp,
         title: "Zdravá záda/corporate shrimp",
         category: "skupinovky",
     },
     {
-        icon: waist,
-        title: "Hubnutí a kondice",
-        category: "skupinovky",
-    },
-    {
         icon: muscle,
-        title: "Síla a svaly",
+        title: "Síla a kondice",
         category: "skupinovky",
     },
     {
         icon: run,
-        title: "Goata (biomechanika pohybu)",
-        category: "skupinovky",
-    },
-    {
-        icon: heart,
-        title: "Hyrox (týmový trénink)",
-        category: "skupinovky",
-    },
-    {
-        icon: body,
-        title: "Cvičení s vlastní vahou",
-        category: "skupinovky",
-    },
-    {
-        icon: rope,
-        title: "Švihadlo",
-        category: "skupinovky",
-    },
-    {
-        icon: stretch,
-        title: "Mobilita a kompenzace",
+        title: "Zdravé kyčle a kolena",
         category: "skupinovky",
     },
     {
@@ -105,10 +46,10 @@ const items = [
         title: "Dětský pohybový kroužek",
         category: "skupinovky",
     },
-];
+]
 
-const individual = items.filter((item) => item.category === "individual");
-const skupinovky = items.filter((item) => item.category === "skupinovky");
+const individual = items.filter((item) => item.category === "individual")
+const skupinovky = items.filter((item) => item.category === "skupinovky")
 ---
 
 <Section

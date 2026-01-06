@@ -1,41 +1,43 @@
 ---
-import PriceCard from "../../components/PriceCard.astro";
-import Section from "../../components/Section.astro";
+import PriceCard from "../../components/PriceCard.astro"
+import Section from "../../components/Section.astro"
 
 const items = [
     {
         title: "Individual",
-        price: "1100 Kč",
-        packagePrice: "10000 Kč",
-        perex: "<ul><li>• tréninkový plán, průběžná úprava plánu </li><li>• řešení konkrétních problémů klienta, úrazů, apod.</li><li>• online konzultace </li><li>• video návody na kompenzační cviky </li><li>• případná konzultace/ošetření od spřátelených doktorů <br/> • možnost vytvoření jídelníčku od MUDr. Romany Zámečníkové za zvýhodněnou cenu</li></ul>",
+        price: "1290 Kč",
+        packagePrice: "11 900 Kč",
+        perex: "<ul><li>• tréninky na doma</li><li>• tréninkový plán, průběžná úprava plánu </li><li>• řešení konkrétních problémů klienta, úrazů, apod.</li><li>• online konzultace </li><li>• video návody na kompenzační cviky </li><li>• případná konzultace/ošetření od spřátelených doktorů <br/></li></ul>",
     },
     {
         title: "Individual pro dva",
-        price: "1200 Kč",
-        packagePrice: "11000 Kč",
+        price: "1390 Kč",
+        packagePrice: "12 900 Kč",
         perex: "<ul><li>• obsahuje veškeré výhody individuálního tréninku</li><li>• parťákovi a tobě na míru za zvýhodněnou cenu </li><li>• plán okořeněný o zábavné cviky v páru</li></ul>",
     },
     {
-        title: "Základy cvičení",
-        perex: "<ul><li>• naučím tě, jak bezpečně a efektivně cvičit bez trenéra </li><li>• technika cviků s váhou, na strojích i s vlastní váhou</li><li>• jak si sestavit tréninkový plán, a jak ho upravovat podle potřeb </li><li>• online konzultace mimo trénink</li></ul>",
-        packagePrice: "6000 Kč",
-    },
-    {
         title: "Skupinovka",
-        perex: "Vstup je zahrnut v ceně <br/><ul><li>•  fyziofitness - zdravá záda, GOATA (biomechanika), mobilita a kompenzace </li><li>• síla a svaly, hubnutí a kondice, cvičení venku, cvičení s vlastní vahou, švihadlo</li></ul>",
-        price: "150 Kč",
+        perex: "vstup zahrnut v ceně <br/><br/>od 1.5. skupinovky venku/v soukromých prostorách, limit 4 osoby, pro rezervaci místa pište na e-mail hejbnisebou@gmail.com<br/><ul><li>• bolesti zad/prevence</li><li>• síla a kondice</li><li>• dětský kroužek (věk 7+)</li></ul>",
+        price: "250 Kč",
     },
     {
-        title: "Skupinový workshop",
-        perex: "<ul><li>• naučím tě, jak bezpečně a efektivně cvičit bez trenéra </li><li>• technika cviků s vlastní váhou</li><li>• jak si sestavit tréninkový plán, a&nbsp;jak ho upravovat dle potřeb </li><li>• skupina 4-6 klientů</li></ul>",
-        packagePrice: "3000 Kč",
+        title: "Transformace 6 (6 týdnů)",
+        perex: "<ul><li>• trénink 5x týdně</li><li>• výživový koučink s kontrolou toho, co jíš</li><li>• online support mimo gym po celou dobu </li><li>• profi fotky před a po</li><li>• možnost nahradit zameškané tréninky (v neděli večer)</li><li>• podrobný manuál</li><li>• domácí úkoly 3-5x týdně (volitelně)</li></ul>Platba může být rozdělena na 2 části po 17 950 Kč",
+        packagePrice: "35 900 Kč",
+        packageNumber: 30,
+    },
+    {
+        title: "Transformace 12 (12 týdnů)",
+        perex: "<ul><li>• trénink 5x týdně</li><li>• výživový koučink s kontrolou toho, co jíš</li><li>• online support mimo gym po celou dobu</li><li>• profi fotky před a po</li><li>• možnost nahradit zameškané tréninky (v neděli večer)</li><li>• </li><li>• podrobný manuál</li><li>• domácí úkoly 3-5x týdně (volitelně)</li></ul>Platba může být rozdělena na zálohu 23 960 Kč + 3 splátky po 11 980 Kč",
+        packagePrice: "59 900 Kč",
+        packageNumber: 60,
     },
     {
         title: "Online trénink",
-        packagePrice: "3000 Kč",
+        packagePrice: "5900 Kč",
         perex: "<ul><li>• video návody na cviky</li> <li>• tréninkový program a jeho průběžná úprava </li><li>• týdenní kontrola techniky a výsledků </li><li>• týdenní konzultace </li><li>• případná konzultace/ošetření od spřátelených doktorů </li><li>• možnost vytvoření jídelníčku od MUDr. Romany Zámečníkové za zvýhodněnou cenu </li></ul>",
     },
-];
+]
 ---
 
 <Section

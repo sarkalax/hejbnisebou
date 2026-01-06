@@ -1,44 +1,44 @@
 @font-face {
-  font-family: "Montserrat";
-  src: url("../assets/fonts/Montserrat.ttf");
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat.ttf");
 }
 @font-face {
-  font-family: "SourceSans";
-  src: url("../assets/fonts/SourceSans.ttf");
+    font-family: "SourceSans";
+    src: url("../assets/fonts/SourceSans.ttf");
 }
 
 :root {
-  --background-color: #1a1a1a;
-  --white-color: #ffffff;
-  --text-color: #cacaca;
-  --orange-color: #ffaa00;
-  --max-container-width: 1370px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 62.5%;
+    --background-color: #1a1a1a;
+    --white-color: #ffffff;
+    --text-color: #cacaca;
+    --orange-color: #ffaa00;
+    --max-container-width: 1370px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 62.5%;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 *::selection {
-  background: var(--orange-color);
-  color: var(--background-color);
+    background: var(--orange-color);
+    color: var(--background-color);
 }
 
 html,
 body {
-  font-family: "SourceSans";
-  font-size: 1.6em;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    font-family: "SourceSans";
+    font-size: 1.6em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 input,
 textarea {
-  color: var(--text-color);
+    color: var(--text-color);
 }
 
 h1,
@@ -46,84 +46,87 @@ h2,
 h3,
 h4,
 blackquote {
-  font-family: "Montserrat";
-  color: var(--white-color);
+    font-family: "Montserrat";
+    color: var(--white-color);
 }
 
 a {
-  width: max-content;
+    width: max-content;
 }
 
 a,
 a:visited {
-  color: var(--white-color);
-  text-decoration: none;
+    color: var(--white-color);
+    text-decoration: none;
 }
 
 button {
-  border: none;
-  background: none;
-  font-family: "SourceSans";
+    border: none;
+    background: none;
+    font-family: "SourceSans";
 }
 
 ul li {
-  list-style: none;
+    list-style: none;
 }
 
 *:focus-visible {
-  outline-color: var(--orange-color);
+    outline-color: var(--orange-color);
 }
 
 .highlight-text {
-  color: var(--white-color);
-  font-weight: 600;
+    color: var(--white-color);
+    font-weight: 600;
 }
 .highlight-orange-text {
-  color: var(--orange-color);
-  font-size: 2.5rem;
-  font-weight: 600;
+    color: var(--orange-color);
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 .section-heading {
-  text-transform: uppercase;
-  padding-bottom: 3rem;
+    text-transform: uppercase;
+    padding-bottom: 3rem;
 
-  @media only screen and (min-width: 960px) {
-    padding-bottom: 3.5rem;
-  }
+    @media only screen and (min-width: 960px) {
+        padding-bottom: 3.5rem;
+    }
 }
 .ac-tab-header {
-  box-shadow: none !important;
-  justify-content: center !important;
-  gap: clamp(0.5rem, 5wv ,2rem) !important;
-  padding-bottom: 3rem !important;
- 
+    box-shadow: none !important;
+    justify-content: center !important;
+    gap: clamp(0.5rem, 5wv, 2rem) !important;
+    padding-bottom: 3rem !important;
 }
 .ac-tab-button {
-  color: var(--white-color) !important;
-  font-size: clamp(1.5rem, 5vw, 2rem) !important;
-  font-family: "Montserrat" !important;
+    color: var(--white-color) !important;
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    font-family: "Montserrat" !important;
 }
 .ac-tab-button[aria-selected="true"] {
-  position: relative;
-  color: var(--orange-color) !important;
+    position: relative;
+    color: var(--orange-color) !important;
 }
 .ac-tab-button[aria-selected="true"]::after {
-  position: absolute;
-  bottom: 0;
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: var(--orange-color);
-  margin-top: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--orange-color);
+    margin-top: 0.5rem;
 }
 
 .ac-tab-pane[aria-hidden="false"] {
-  display: flex !important;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 3rem;
-  row-gap: 4rem;
-  max-width: 1000px;
-  margin: 0 auto !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 3rem;
+    row-gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
