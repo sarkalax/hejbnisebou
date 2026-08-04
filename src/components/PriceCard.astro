@@ -2,31 +2,37 @@
 interface Props {
     title: string
     price?: string
-    perex?: string
+    priceUnit?: string
     packagePrice?: string
     packageNumber?: number
 }
 
-const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
+const {
+    title,
+    price,
+    priceUnit,
+    packagePrice,
+    packageNumber = 10,
+} = Astro.props
 ---
 
 <article>
     <h3 class="title" set:html={title} />
-    <p class="perex" set:html={perex} />
+    <div class="perex"><slot /></div>
     <div class="prices">
         {
             price && (
                 <div>
-                    <h3 class="price" set:html={price} /> /trénink
+                    <h3 class="price" set:html={price} /> {priceUnit}
                 </div>
             )
         }
         {price && packagePrice && <div>NEBO</div>}
         {
             packagePrice && (
-                <>
+                <div>
                     <h3 set:html={packagePrice} /> / {packageNumber} tréninků
-                </>
+                </div>
             )
         }
     </div>
@@ -37,16 +43,17 @@ const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
         display: flex;
         flex-direction: column;
         position: relative;
-        justify-content: space-between;
+        justify-content: flex-start;
+        container-type: inline-size;
         gap: 2rem;
         box-shadow: 1px -1px 0 rgba(255, 170, 0, 0.4);
         border-radius: 40px;
-        width: 300px;
-        min-height: 100%;
+        width: 100%;
+        height: 100%;
         padding: 4.8rem 4rem;
         overflow: hidden;
     }
-    article::after {
+    article::before {
         position: absolute;
         inset: 0;
         display: block;
@@ -58,6 +65,12 @@ const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
             rgba(0, 0, 0, 0) 80%
         );
         opacity: 0.4;
+        pointer-events: none;
+        z-index: 0;
+    }
+    article > * {
+        position: relative;
+        z-index: 1;
     }
     h3 {
         font-size: clamp(2.4rem, 3vw, 3.2rem);
@@ -74,9 +87,29 @@ const { title, price, perex, packagePrice, packageNumber = 10 } = Astro.props
         justify-content: flex-start;
         align-items: flex-start;
         margin-top: auto;
-        gap: 1rem;
+        padding-top: 2rem;
+        white-space: nowrap;
+    }
+
+    .prices h3 {
+        font-size: clamp(2.4rem, 8.5cqi, 3.6rem);
     }
     .perex {
-        text-align: block;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .perex :global(li)::before {
+        content: "• ";
+    }
+    .perex :global(ul ul) {
+        padding-left: 1.6rem;
+        margin-top: 0.4rem;
+    }
+    .perex :global(ul ul li)::before {
+        content: "– ";
+    }
+    .perex :global(a) {
+        text-decoration: underline;
     }
 </style>

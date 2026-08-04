@@ -1,70 +1,181 @@
 ---
 import PriceCard from "../../components/PriceCard.astro"
 import Section from "../../components/Section.astro"
-
-const items = [
-    {
-        title: "Individual",
-        price: "1290 Kč",
-        packagePrice: "11 900 Kč",
-        perex: "<ul><li>• tréninky na doma</li><li>• tréninkový plán, průběžná úprava plánu </li><li>• řešení konkrétních problémů klienta, úrazů, apod.</li><li>• online konzultace </li><li>• video návody na kompenzační cviky </li><li>• případná konzultace/ošetření od spřátelených doktorů <br/></li></ul>",
-    },
-    {
-        title: "Individual pro dva",
-        price: "1390 Kč",
-        packagePrice: "12 900 Kč",
-        perex: "<ul><li>• obsahuje veškeré výhody individuálního tréninku</li><li>• parťákovi a tobě na míru za zvýhodněnou cenu </li><li>• plán okořeněný o zábavné cviky v páru</li></ul>",
-    },
-    {
-        title: "Skupinovka",
-        perex: "vstup zahrnut v ceně <br/><br/>od 1.5. skupinovky venku/v soukromých prostorách, limit 4 osoby, pro rezervaci místa pište na e-mail hejbnisebou@gmail.com<br/><ul><li>• bolesti zad/prevence</li><li>• síla a kondice</li><li>• dětský kroužek (věk 7+)</li></ul>",
-        price: "250 Kč",
-    },
-    {
-        title: "Transformace 6 (6&nbsp;týdnů)",
-        perex: "<ul><li>• trénink 5x týdně</li><li>• výživový koučink s kontrolou toho, co jíš</li><li>• online support mimo gym po celou dobu </li><li>• profi fotky před a po</li><li>• možnost nahradit zameškané tréninky (v neděli večer)</li><li>• podrobný manuál</li><li>• domácí úkoly 3-5x týdně (volitelně)</li></ul>Platba může být rozdělena na 2 části po 17 950 Kč",
-        packagePrice: "35 900 Kč",
-        packageNumber: 30,
-    },
-    {
-        title: "Transformace 12 (12&nbsp;týdnů)",
-        perex: "<ul><li>• trénink 5x týdně</li><li>• výživový koučink s kontrolou toho, co jíš</li><li>• online support mimo gym po celou dobu</li><li>• profi fotky před a po</li><li>• možnost nahradit zameškané tréninky (v neděli večer)</li><li>• </li><li>• podrobný manuál</li><li>• domácí úkoly 3-5x týdně (volitelně)</li></ul>Platba může být rozdělena na zálohu 23 960 Kč + 3 splátky po 11 980 Kč",
-        packagePrice: "59 900 Kč",
-        packageNumber: 60,
-    },
-    {
-        title: "Online trénink",
-        packagePrice: "5900 Kč",
-        perex: "<ul><li>• video návody na cviky</li> <li>• tréninkový program a jeho průběžná úprava </li><li>• týdenní kontrola techniky a výsledků </li><li>• týdenní konzultace </li><li>• případná konzultace/ošetření od spřátelených doktorů </li><li>• možnost vytvoření jídelníčku od MUDr. Romany Zámečníkové za zvýhodněnou cenu </li></ul>",
-    },
-]
 ---
 
 <Section
     title="Ceník"
     perex="<strong class='highlight-text'>PRVNÍ TRÉNINK ZA 200,-kč</strong> (jeden oběd) - ať máte možnost posoudit, jestli za to ty peníze stojí. <br/> Na vše kromě skupinovek nabízím <strong class='highlight-text'>slevu pro samoživitele a seniory</strong>. Vše je o domluvě. <br/><br/> Nabízím také <strong class='highlight-text'>dárkové poukazy</strong> na všechny tréninky a lekce."
 >
-    <ul>
-        {
-            items.map((item) => (
-                <li>
-                    <PriceCard {...item} />
-                </li>
-            ))
-        }
+    <ul class="cards">
+        <li>
+            <PriceCard
+                title="Vstupní diagnostika a trénink"
+                price="1290 Kč"
+                priceUnit=""
+            >
+                <ul>
+                    <li>
+                        komplexní pohybová diagnostika zaměřená na kvalitu
+                        pohybu, mobilitu a koordinaci
+                    </li>
+                    <li>
+                        posouzení techniky základních pohybových vzorů a
+                        identifikace možných limitací či kompenzací
+                    </li>
+                    <li>
+                        první individuálně vedený trénink podle výsledků
+                        diagnostiky
+                    </li>
+                    <li>
+                        podrobný vstupní rozhovor o vašich cílech, zdravotním
+                        stavu, předchozích zraněních a pohybové historii
+                    </li>
+                    <li>
+                        doporučení dalšího postupu a nastavení individuální
+                        spolupráce
+                    </li>
+                </ul>
+            </PriceCard>
+        </li>
+        <li>
+            <PriceCard title="Online vedení" price="2990 Kč" priceUnit="/měsíc">
+                <ul>
+                    <li>individuální tréninkový plán na doma</li>
+                    <li>individuální plán denní pohybové průpravy</li>
+                    <li>přístup do klientského systému</li>
+                    <li>
+                        monitorovací tabulka, ve které společně sledujeme:
+                        <ul>
+                            <li>pravidelnost tréninků a jejich plnění</li>
+                            <li>objem tréninkové zátěže</li>
+                            <li>průběžné výsledky</li>
+                            <li>
+                                případně úpravu programu podle vašeho vývoje
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="highlight-text">
+                    Doporučuji především klientům, kteří už se mnou absolvovali
+                    osobní spolupráci a chtějí pokračovat samostatně, ale stále
+                    pod odborným vedením.
+                </p>
+            </PriceCard>
+        </li>
+        <li>
+            <PriceCard
+                title="Základní program"
+                price="5290 Kč"
+                priceUnit="/měsíc"
+            >
+                <ul>
+                    <li>
+                        4&times; vedená tréninková jednotka měsíčně
+                        (1&times;&nbsp;týdně)
+                    </li>
+                    <li>individuální tréninkový plán na doma</li>
+                    <li>individuální plán denní pohybové průpravy</li>
+                    <li>přístup do klientského systému</li>
+                    <li>
+                        monitorovací tabulka, ve které společně sledujeme:
+                        <ul>
+                            <li>pravidelnost tréninků a jejich plnění</li>
+                            <li>objem tréninkové zátěže</li>
+                            <li>průběžné výsledky</li>
+                            <li>
+                                případně kalorický příjem a průběh redukce
+                                hmotnosti
+                            </li>
+                        </ul>
+                    </li>
+                    <li>1&times;&nbsp;týdně 20min online korekce techniky</li>
+                    <li>týdenní úprava programu podle vašeho vývoje</li>
+                </ul>
+            </PriceCard>
+        </li>
+        <li>
+            <PriceCard
+                title="Progresivní program"
+                price="10 490 Kč"
+                priceUnit="/měsíc"
+            >
+                <ul>
+                    <li>
+                        8&times; vedená tréninková jednotka měsíčně
+                        (2&times;&nbsp;týdně)
+                    </li>
+                    <li>individuální tréninkový plán na doma</li>
+                    <li>individuální plán denní pohybové průpravy</li>
+                    <li>přístup do klientského systému</li>
+                    <li>
+                        monitorovací tabulka, ve které společně sledujeme:
+                        <ul>
+                            <li>pravidelnost tréninků a jejich plnění</li>
+                            <li>objem tréninkové zátěže</li>
+                            <li>průběžné výsledky</li>
+                        </ul>
+                    </li>
+                    <li>týdenní úprava programu podle vašeho vývoje</li>
+                </ul>
+            </PriceCard>
+        </li>
+        <li>
+            <PriceCard
+                title="Transformace (6 týdnů)"
+                packagePrice="35 900 Kč"
+                packageNumber={30}
+            >
+                <ul>
+                    <li>30 tréninků (5&times;&nbsp;týdně)</li>
+                    <li>výživový koučink s kontrolou toho, co jíš</li>
+                    <li>online support mimo gym po celou dobu</li>
+                    <li>profi fotky před a po</li>
+                    <li>
+                        možnost nahradit zameškané tréninky (v neděli večer)
+                    </li>
+                    <li>podrobný manuál</li>
+                    <li>domácí úkoly 3-5&times;&nbsp;týdně (volitelně)</li>
+                </ul>
+            </PriceCard>
+        </li>
+        <li>
+            <PriceCard title="Skupinovka" price="250 Kč">
+                <p>vstup zahrnut v ceně</p>
+                <p>
+                    od 1.5. skupinovky venku/v soukromých prostorách, limit 4
+                    osoby, pro rezervaci místa pište na e-mail
+                    <a href="mailto:hejbnisebou@gmail.com">
+                        hejbnisebou@gmail.com
+                    </a>
+                </p>
+                <ul>
+                    <li>bolesti zad/prevence</li>
+                    <li>síla a kondice</li>
+                    <li>dětský kroužek (věk 7+)</li>
+                </ul>
+            </PriceCard>
+        </li>
     </ul>
 </Section>
 
 <style>
-    ul {
-        display: flex;
-        flex-wrap: wrap;
+    .cards {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         gap: 1.6rem;
-        justify-content: center;
 
-        @media only screen and (min-width: 600px) {
+        @media only screen and (min-width: 700px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             column-gap: 3rem;
             row-gap: 2rem;
         }
+
+        @media only screen and (min-width: 1100px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+    .cards > li {
+        display: flex;
     }
 </style>
