@@ -1,20 +1,21 @@
 ---
 interface Props {
-    title: string;
-    variant?: "primary" | "secondary";
-    type?: "button" | "submit";
+    title: string
+    variant?: "primary" | "secondary"
+    type?: "button" | "submit"
     /** Kdyz je vyplneny, komponenta se vykresli jako <a>, jinak jako <button>.
      *  Drive se <Button> vkladal dovnitr <a>, coz je nevalidni vnoreni
      *  interaktivnich prvku a vytvarelo to dva tab stopy na jeden ovladac. */
-    href?: string;
-    id?: string;
+    href?: string
+    id?: string
 }
 
-const { title, variant = "primary", type = "button", href, id } = Astro.props;
+const { title, variant = "primary", type = "button", href, id } = Astro.props
 
-const Tag = href ? "a" : "button";
-const tagProps = href ? { href } : { type };
+const Tag = href ? "a" : "button"
+const tagProps = href ? { href } : { type }
 ---
+
 <Tag class:list={["btn", variant]} id={id} {...tagProps}>
     <svg
         width="14"
@@ -47,7 +48,6 @@ const tagProps = href ? { href } : { type };
         cursor: pointer;
         text-wrap: nowrap;
         transition: var(--transition);
-        overflow: hidden;
         width: max-content;
     }
     .primary {
