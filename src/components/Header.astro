@@ -4,8 +4,9 @@ import Logo from "./Logo.astro"
 ---
 
 <header>
+    <a href="#obsah" class="skip-link">Přeskočit na obsah</a>
     <Logo />
-    <nav id="navigation">
+    <nav id="navigation" aria-label="Hlavní">
         <ul id="links">
             <li>
                 <a href="#o-mne">o mně</a>
@@ -20,20 +21,22 @@ import Logo from "./Logo.astro"
                 <a href="#cenik">ceník</a>
             </li>
             <li>
-                <a href="#kontaktuj-me">
-                    <Button title="Kontakt" />
-                </a>
+                <Button href="#kontaktuj-me" title="Kontakt" />
             </li>
         </ul>
-        <div id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <button
+            id="hamburger"
+            type="button"
+            aria-label="Otevřít menu"
+            aria-expanded="false"
+            aria-controls="links"
+        >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
     </nav>
-    <a id="contact-button" href="#kontaktuj-me">
-        <Button title="Kontakt" />
-    </a>
+    <Button href="#kontaktuj-me" title="Kontakt" id="contact-button" />
 </header>
 
 <script>
@@ -80,36 +83,66 @@ import Logo from "./Logo.astro"
             { passive: true },
         )
 
+        // Stav menu drzi jedna funkce, aby se aria-expanded nikdy nerozesla
+        // s vizualnim stavem.
+        const setMenu = (open: boolean) => {
+            hamburger.classList.toggle("is-open", open)
+            navigation.classList.toggle("is-open", open)
+            hamburger.setAttribute("aria-expanded", String(open))
+            hamburger.setAttribute(
+                "aria-label",
+                open ? "Zavřít menu" : "Otevřít menu",
+            )
+            body.style.overflowY = open ? "hidden" : "auto"
+            body.style.height = open ? "100vh" : ""
+        }
+
         window.addEventListener("resize", () => {
             isDesktop = window.innerWidth > 768
             if (isDesktop) {
-                navigation.classList.remove("is-open")
-                body.style.overflowY = "auto"
+                setMenu(false)
             }
         })
 
         hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("is-open")
-            navigation.classList.toggle("is-open")
+            setMenu(!navigation.classList.contains("is-open"))
+        })
 
-            if (navigation.classList.contains("is-open")) {
-                body.style.height = "100vh"
-                body.style.overflowY = "hidden"
-            } else {
-                body.style.overflowY = "auto"
+        document.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Escape" &&
+                navigation.classList.contains("is-open")
+            ) {
+                setMenu(false)
+                hamburger.focus()
             }
         })
+
         links.forEach((link) => {
             link.addEventListener("click", () => {
-                hamburger.classList.remove("is-open")
-                navigation.classList.remove("is-open")
-                document.body.style.overflowY = "auto"
+                setMenu(false)
             })
         })
     })
 </script>
 
 <style>
+    .skip-link {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1000;
+        padding: 1rem 1.5rem;
+        border-radius: 999px;
+        background: var(--orange-color);
+        color: var(--background-color);
+        font-size: 1.6rem;
+        transform: translateY(-250%);
+        transition: transform 0.2s ease;
+    }
+    .skip-link:focus-visible {
+        transform: translateY(0);
+    }
     header {
         position: fixed;
         display: flex;
@@ -176,7 +209,7 @@ import Logo from "./Logo.astro"
     #links li:hover::after {
         background: var(--white-color);
     }
-    #contact-button {
+    :global(#contact-button) {
         display: none;
 
         @media only screen and (min-width: 768px) {

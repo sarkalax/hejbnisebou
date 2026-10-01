@@ -2,24 +2,32 @@
 import Wrapper from "./Wrapper.astro";
 
 interface Props {
-    title: string;
+    title?: string;
     perex?: string;
 }
 
 const { title, perex } = Astro.props;
 
+// Sekce bez nadpisu (galerie) drive generovala prazdny <h2> a prazdne id.
 const id = title
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/\s/g, "-");
+    ? title
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, "-")
+    : undefined;
 ---
 
 <Wrapper id={id}>
     <div>
-        <h2 class="section-heading">
-            {title}
-        </h2>
+        {
+            title && (
+                <h2 class="section-heading">
+                    {title}
+                </h2>
+            )
+        }
         {perex && <p set:html={perex} class="perex" />}
         <slot />
     </div>

@@ -23,7 +23,7 @@ const {
         {
             price && (
                 <div>
-                    <h3 class="price" set:html={price} /> {priceUnit}
+                    <p class="price" set:html={price} /> {priceUnit}
                 </div>
             )
         }
@@ -31,7 +31,7 @@ const {
         {
             packagePrice && (
                 <div>
-                    <h3 set:html={packagePrice} /> / {packageNumber} tréninků
+                    <p class="package-price" set:html={packagePrice} /> / {packageNumber} tréninků
                 </div>
             )
         }
@@ -72,9 +72,17 @@ const {
         position: relative;
         z-index: 1;
     }
-    h3 {
+    h3,
+    .price,
+    .package-price {
         font-size: clamp(2.4rem, 3vw, 3.2rem);
         display: inline-block;
+    }
+    /* Ceny uz nejsou nadpisy, takze si typografii musi nastavit samy. */
+    .price,
+    .package-price {
+        font-family: "Montserrat";
+        color: var(--white-color);
     }
     .title {
         font-family: "SourceSans";
@@ -91,7 +99,8 @@ const {
         white-space: nowrap;
     }
 
-    .prices h3 {
+    .prices .price,
+    .prices .package-price {
         font-size: clamp(2.4rem, 1rem + 3.5vw, 3.2rem);
     }
     .perex {

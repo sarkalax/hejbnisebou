@@ -3,18 +3,27 @@ interface Props {
     title: string;
     variant?: "primary" | "secondary";
     type?: "button" | "submit";
+    /** Kdyz je vyplneny, komponenta se vykresli jako <a>, jinak jako <button>.
+     *  Drive se <Button> vkladal dovnitr <a>, coz je nevalidni vnoreni
+     *  interaktivnich prvku a vytvarelo to dva tab stopy na jeden ovladac. */
+    href?: string;
+    id?: string;
 }
 
-const { title, variant = "primary", type = "button" } = Astro.props;
----
+const { title, variant = "primary", type = "button", href, id } = Astro.props;
 
-<button class={variant} type={type}>
+const Tag = href ? "a" : "button";
+const tagProps = href ? { href } : { type };
+---
+<Tag class:list={["btn", variant]} id={id} {...tagProps}>
     <svg
         width="14"
         height="14"
         viewBox="0 0 18 18"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        focusable="false"
     >
         <path
             d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z"
@@ -23,10 +32,10 @@ const { title, variant = "primary", type = "button" } = Astro.props;
     <span>
         {title}
     </span>
-</button>
+</Tag>
 
 <style>
-    button {
+    .btn {
         display: flex;
         align-items: center;
         justify-content: center;

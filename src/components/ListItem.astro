@@ -7,7 +7,7 @@ const { title, description } = Astro.props;
 ---
 
 <li>
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <p>{description}</p>
 </li>
 
@@ -22,12 +22,12 @@ const { title, description } = Astro.props;
     li:not(:last-child) {
         margin-bottom: 2rem;
     }
-    h2 {
+    h3 {
         font-size: 2rem;
         font-weight: 600;
         position: relative;
     }
-    h2::before {
+    h3::before {
         position: absolute;
         left: -2.5rem;
         top: -0.2rem;
