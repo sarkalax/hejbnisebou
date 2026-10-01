@@ -1,6 +1,6 @@
 ---
-import { Tab, TabItem } from "free-astro-components"
 import Section from "../../components/Section.astro"
+import Tabs from "../../components/Tabs.astro"
 
 import kid from "../../assets/svg/kid.svg"
 import glass from "../../assets/svg/magnifying-glass.svg"
@@ -56,12 +56,12 @@ const skupinovky = items.filter((item) => item.category === "skupinovky")
     title="Co nabízím"
     perex=`Nabízím <span class="highlight-text">individuální</span> tréninky šité na míru vašim cílům i <span class="highlight-text">skupinové</span> lekce plné energie, zábavy a motivace. Nabídku můžete vidět níže`
 >
-    <Tab
-        tabs={[{ label: "INDIVIDUAL", active: true }, { label: "SKUPINOVKY" }]}
-    >
-        <TabItem active
-            >{individual.map((item) => <OfferCard {...item} />)}</TabItem
-        >
-        <TabItem>{skupinovky.map((item) => <OfferCard {...item} />)}</TabItem>
-    </Tab>
+    <Tabs id="nabidka" label="Typy lekci" tabs={["INDIVIDUAL", "SKUPINOVKY"]}>
+        <Fragment slot="panel-0">
+            {individual.map((item) => <OfferCard {...item} />)}
+        </Fragment>
+        <Fragment slot="panel-1">
+            {skupinovky.map((item) => <OfferCard {...item} />)}
+        </Fragment>
+    </Tabs>
 </Section>

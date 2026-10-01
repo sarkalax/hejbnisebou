@@ -1,6 +1,6 @@
 ---
-import Section from "../../components/Section.astro";
-import Wrapper from "../../components/Wrapper.astro";
+import Section from "../../components/Section.astro"
+import Wrapper from "../../components/Wrapper.astro"
 
 const items = [
     {
@@ -23,7 +23,7 @@ const items = [
         name: "Honza (39 let)",
         text: "Kristýna, na rozdíl ode mě, ví, co dělá. A dokáže mi to vysvětlit, takže potom vím co a jak.",
     },
-];
+]
 ---
 
 <Section title="Klienti o mně říkají">
@@ -39,8 +39,8 @@ const items = [
                     ))
                 }
             </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <button class="swiper-button-prev"></button>
+            <button class="swiper-button-next"></button>
         </div>
     </Wrapper>
 </Section>
@@ -50,9 +50,8 @@ const items = [
 
     if (container) {
         const load = async () => {
-            const { initReviewSlider } = await import(
-                "../../scripts/reviewSlider"
-            )
+            const { initReviewSlider } =
+                await import("../../scripts/reviewSlider")
             initReviewSlider(container)
         }
 

@@ -1,0 +1,132 @@
+---
+interface Props {
+    id: string
+    tabs: string[]
+    label: string
+    class?: string
+}
+
+const { id, tabs, label, class: className } = Astro.props
+
+const panels = await Promise.all(
+    tabs.map((_, index) => Astro.slots.render(`panel-${index}`)),
+)
+---
+
+<div class:list={["tabs", className]} data-tabs>
+    <div class="tabs-header" role="tablist" aria-label={label}>
+        {
+            tabs.map((tab, index) => (
+                <button
+                    type="button"
+                    class="tabs-button"
+                    role="tab"
+                    id={`${id}-tab-${index}`}
+                    aria-controls={`${id}-panel-${index}`}
+                    aria-selected={index === 0 ? "true" : "false"}
+                >
+                    {tab}
+                </button>
+            ))
+        }
+    </div>
+    {
+        panels.map((panel, index) => (
+            <div
+                class="tabs-panel"
+                role="tabpanel"
+                id={`${id}-panel-${index}`}
+                aria-labelledby={`${id}-tab-${index}`}
+                set:html={panel}
+                hidden={index !== 0}
+            />
+        ))
+    }
+</div>
+
+<style>
+    .tabs-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(0.5rem, 5vw, 2rem);
+        padding-bottom: 3rem;
+    }
+    .tabs-button {
+        color: var(--white-color);
+        font-family: "Montserrat";
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: color var(--transition);
+    }
+    .tabs-button:hover,
+    .tabs-button[aria-selected="true"] {
+        color: var(--orange-color);
+    }
+    .tabs-button[aria-selected="true"] {
+        position: relative;
+    }
+    .tabs-button[aria-selected="true"]::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--orange-color);
+    }
+
+    .tabs-panel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 3rem;
+        row-gap: 4rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .tabs-panel[hidden] {
+        display: none;
+    }
+</style>
+
+<script>
+    document.querySelectorAll("[data-tabs]").forEach((tabs) => {
+        const buttons = Array.from(
+            tabs.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+        )
+        const panels = Array.from(
+            tabs.querySelectorAll<HTMLElement>('[role="tabpanel"]'),
+        )
+
+        // Vsechny taby zustavaji v Tab poradi (bez roving tabindexu), aby se na
+        // ne dalo dostat i samotnym Tabem. Sipky prepinaji taby navic.
+        const activate = (index: number, moveFocus: boolean) => {
+            buttons.forEach((button, i) => {
+                const selected = i === index
+                button.setAttribute("aria-selected", String(selected))
+                if (panels[i]) panels[i].hidden = !selected
+            })
+            if (moveFocus) buttons[index].focus()
+        }
+
+        buttons.forEach((button, index) => {
+            button.addEventListener("click", () => activate(index, false))
+            button.addEventListener("keydown", (event) => {
+                const targets: Record<string, number> = {
+                    ArrowLeft: index - 1,
+                    ArrowRight: index + 1,
+                    Home: 0,
+                    End: buttons.length - 1,
+                }
+                const target = targets[event.key]
+                if (target === undefined) return
+
+                event.preventDefault()
+                activate((target + buttons.length) % buttons.length, true)
+            })
+        })
+    })
+</script>

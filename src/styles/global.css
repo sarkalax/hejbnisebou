@@ -97,42 +97,6 @@ ul li {
         padding-bottom: 3.5rem;
     }
 }
-.ac-tab-header {
-    box-shadow: none !important;
-    justify-content: center !important;
-    gap: clamp(0.5rem, 5wv, 2rem) !important;
-    padding-bottom: 3rem !important;
-}
-.ac-tab-button {
-    color: var(--white-color) !important;
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-    font-family: "Montserrat" !important;
-}
-.ac-tab-button[aria-selected="true"] {
-    position: relative;
-    color: var(--orange-color) !important;
-}
-.ac-tab-button[aria-selected="true"]::after {
-    position: absolute;
-    bottom: 0;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: var(--orange-color);
-    margin-top: 0.5rem;
-}
-
-.ac-tab-pane[aria-hidden="false"] {
-    display: flex !important;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 3rem;
-    row-gap: 4rem;
-    max-width: 1000px;
-    margin: 0 auto !important;
-}
-
 ::-webkit-scrollbar {
     display: none;
 }
