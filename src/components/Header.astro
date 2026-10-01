@@ -48,24 +48,41 @@ import Logo from "./Logo.astro"
             return
         }
 
+        // Sirka okna se cache-uje a prepisuje az pri resize, aby cteni
+        // layoutu uvnitr scroll handleru nevynucovalo reflow.
+        let isDesktop = window.innerWidth > 768
         let lastScroll = window.scrollY
-        window.addEventListener("scroll", () => {
+        let ticking = false
+
+        const updateHeader = () => {
+            ticking = false
             const currentScroll = window.scrollY
 
-            if (window.innerWidth > 768) {
-                if (currentScroll < lastScroll || currentScroll === 0) {
-                    header.style.transform = "translateY(0)"
-                } else if (currentScroll > lastScroll) {
-                    header.style.transform = "translateY(-100%)"
-                }
-            } else {
+            if (!isDesktop) {
                 header.style.transform = "translateY(0)"
+            } else if (currentScroll < lastScroll || currentScroll === 0) {
+                header.style.transform = "translateY(0)"
+            } else if (currentScroll > lastScroll) {
+                header.style.transform = "translateY(-100%)"
             }
             lastScroll = currentScroll
-        })
+        }
+
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (ticking) {
+                    return
+                }
+                ticking = true
+                requestAnimationFrame(updateHeader)
+            },
+            { passive: true },
+        )
 
         window.addEventListener("resize", () => {
-            if (window.innerWidth > 768) {
+            isDesktop = window.innerWidth > 768
+            if (isDesktop) {
                 navigation.classList.remove("is-open")
                 body.style.overflowY = "auto"
             }

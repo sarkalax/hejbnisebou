@@ -4,6 +4,8 @@ import SpeedInsights from "@vercel/speed-insights/astro"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 import "../styles/global.css"
+import montserrat from "../assets/fonts/Montserrat.woff2?url"
+import sourceSans from "../assets/fonts/SourceSans.woff2?url"
 
 interface Props {
     title?: string
@@ -11,12 +13,29 @@ interface Props {
 }
 
 const { title, description } = Astro.props
+
+// Absolutni URL - scrapery socialnich siti relativni cestu nerozlousknou.
+const ogImage = new URL("/og-image.jpg", Astro.site).href
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="cs">
     <head>
         <meta charset="UTF-8" />
+        <link
+            rel="preload"
+            href={sourceSans}
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href={montserrat}
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
         <link rel="canonical" href={`${import.meta.env.SITE}`} />
         <title>
             {
@@ -42,14 +61,14 @@ const { title, description } = Astro.props
             )
         }
         <meta property="og:locale" content="cs_CZ" />
-        <meta property="og:image" content="/hero.jpg" />
+        <meta property="og:image" content={ogImage} />
         <meta property="og:url" content="https://hejbnisebou.cz" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="/hero.jpg" />
+        <meta name="twitter:image" content={ogImage} />
 
         <link
             rel="icon"

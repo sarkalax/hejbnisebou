@@ -46,39 +46,31 @@ const items = [
 </Section>
 
 <script>
-    import "swiper/css/bundle";
-    import Swiper from "swiper";
+    const container = document.querySelector<HTMLElement>(".swiper")
 
-    const nextButton = document.querySelector(".swiper-button-next");
-    const prevButton = document.querySelector(".swiper-button-prev");
+    if (container) {
+        const load = async () => {
+            const { initReviewSlider } = await import(
+                "../../scripts/reviewSlider"
+            )
+            initReviewSlider(container)
+        }
 
-    const swiper = new Swiper(".swiper", {
-        direction: "horizontal",
-        loop: true,
-        speed: 400,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        spaceBetween: 0,
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-            },
-            640: {
-                slidesPerView: 2,
-            },
-            940: {
-                slidesPerView: 3,
-            },
-        },
-    });
-    nextButton?.addEventListener("click", () => {
-        swiper.slideNext();
-    });
-    prevButton?.addEventListener("click", () => {
-        swiper.slidePrev();
-    });
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    if (entries.some((entry) => entry.isIntersecting)) {
+                        observer.disconnect()
+                        load()
+                    }
+                },
+                { rootMargin: "300px" },
+            )
+            observer.observe(container)
+        } else {
+            load()
+        }
+    }
 </script>
 
 <style>
