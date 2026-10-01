@@ -209,11 +209,13 @@ import Logo from "./Logo.astro"
     #links li:hover::after {
         background: var(--white-color);
     }
+    /* Prepina se jen viditelnost - display: block by prebil .btn { display: flex }
+       z komponenty Button (id ma vyssi specificitu nez trida). */
     :global(#contact-button) {
         display: none;
 
         @media only screen and (min-width: 768px) {
-            display: block;
+            display: flex;
         }
     }
     #navigation.is-open {
