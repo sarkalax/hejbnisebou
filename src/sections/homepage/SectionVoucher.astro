@@ -1,0 +1,157 @@
+---
+import Button from "../../components/Button.astro"
+import Wrapper from "../../components/Wrapper.astro"
+---
+
+<Wrapper id="poukaz">
+    <div class="voucher-section">
+        <p class="eyebrow a-eyebrow">Dárkový poukaz</p>
+        <h2 class="section-title">
+            Daruj sílu a lepší pocit ve vlastním těle.
+        </h2>
+        <p class="section-perex a-perex">
+            Nevyhovuje dárek? Nevyužitý vánoční poukaz může kupující vrátit až
+            do&nbsp;<span class="highlight-text">7.&nbsp;ledna 2027</span>.
+        </p>
+
+        <div class="stack a-voucher">
+            <div
+                class="voucher"
+                role="img"
+                aria-label="Dárkový poukaz: tréninky v klidu a soukromí"
+            >
+                <div class="face">
+                    <div class="top">
+                        <p class="label">Dárkový poukaz</p>
+                        <p class="price">1&nbsp;000<span>Kč</span></p>
+                    </div>
+                    <p class="brand">hejbnisebou</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="a-button">
+            <Button
+                href="mailto:hejbnisebou@gmail.com?subject=Dárkový poukaz"
+                title="Objednat poukaz"
+            />
+        </div>
+    </div>
+</Wrapper>
+
+<style>
+    /* Mobil: hlavicka, poukaz, tlacitko pod sebou. Desktop: text vlevo,
+       poukaz vpravo. */
+    .voucher-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "eyebrow"
+            "title"
+            "perex"
+            "voucher"
+            "button";
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: auto auto auto 1fr;
+            grid-template-areas:
+                "eyebrow voucher"
+                "title voucher"
+                "perex voucher"
+                "button voucher";
+            column-gap: 6rem;
+            padding-top: 8rem;
+        }
+    }
+    .a-eyebrow {
+        grid-area: eyebrow;
+    }
+    .a-title {
+        grid-area: title;
+    }
+    .a-perex {
+        grid-area: perex;
+        padding-bottom: 3rem;
+    }
+    .a-button {
+        grid-area: button;
+        align-self: start;
+    }
+    .a-voucher {
+        grid-area: voucher;
+        margin: 0 0 3.2rem;
+
+        @media only screen and (min-width: 960px) {
+            align-self: center;
+            justify-self: end;
+            margin: 0;
+        }
+    }
+
+    /* Poukaz jako dlouha vizitka */
+    .stack {
+        position: relative;
+        width: 100%;
+        max-width: 56rem;
+    }
+
+    /* Rozmery pisma se odvozuji od sirky poukazu (cqw). Kontejner a obsah
+       jsou dva prvky, protoze cqw na samotnem kontejneru by se pocitalo
+       od rodice. */
+    .voucher {
+        position: relative;
+        overflow: hidden;
+        container-type: inline-size;
+        aspect-ratio: 2;
+        border-radius: 14px;
+        background: #e8e5df;
+        color: #1a1a1a;
+    }
+    .face {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 6cqw 6cqw 0;
+    }
+    .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 4cqw;
+    }
+    .label {
+        font-size: 2.4cqw;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+    .price {
+        font-family: "Montserrat";
+        font-size: 10cqw;
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+    }
+    .price span {
+        padding-left: 1cqw;
+        font-size: 3.4cqw;
+        font-weight: 700;
+        letter-spacing: 0;
+        vertical-align: top;
+    }
+    /* Obri znacka dole, spodni okraj je orizly */
+    .brand {
+        margin-bottom: -0.24em;
+        font-family: "Montserrat";
+        font-size: 14.6cqw;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        white-space: nowrap;
+    }
+</style>

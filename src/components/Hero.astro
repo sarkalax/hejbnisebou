@@ -18,21 +18,23 @@ import Wrapper from "./Wrapper.astro"
     <div class="gradient"></div>
     <Wrapper>
         <div class="hero-content">
-            <h1>BUDUJ SÍLU A&nbsp;SVALY, NE&nbsp;EGO</h1>
+            <h1>Ukazuju lidem, jak&nbsp;silní můžou být</h1>
             <div class="perex">
                 <article>
-                    Jmenuju se Kristýna Ivančíková, jsem <span
-                        class="highlight-text"
-                        >fyzio&nbsp;fitness trenér v Chomutově, Jirkově a v
-                        Praze</span
-                    > a našla jsem smysl v tom, co dělám. Šťourám se v anatomii a
-                    naplňuje mě, když někomu pomůžu.
+                    <h3 class="highlight-text">
+                        A taky pomáhám zbavit se bolesti
+                    </h3>
+                    Ahoj, jsem Kristýna! Jsem osobní trenérka v Chomutově a v Praze,
+                    trénuju v soukromí bez ruchu veřejného fitka, nebo online odkudkoli.
                 </article>
-                <Button
-                    href="#co-nabizim"
-                    title="Nabídka služeb"
-                    variant="secondary"
-                />
+                <p>
+                    Chceš si mě trošku víc proklepnout?
+                    <Button
+                        href="https://www.instagram.com/hejbnisebou"
+                        title="@hejbnisebou"
+                        variant="secondary"
+                    />
+                </p>
             </div>
         </div>
     </Wrapper>
@@ -72,6 +74,10 @@ import Wrapper from "./Wrapper.astro"
         justify-content: flex-end;
         padding-bottom: clamp(3rem, 10vw, 5rem);
         align-self: flex-end;
+
+        @media only screen and (min-width: 960px) {
+            padding-inline: 2.5rem;
+        }
     }
     .hero-image {
         height: 100vh;
@@ -93,10 +99,21 @@ import Wrapper from "./Wrapper.astro"
         max-width: 80vw;
         align-items: start;
 
+        .highlight-text {
+            padding-bottom: 1rem;
+        }
+
+        /* Mezera mezi otazkou a odkazem na Instagram */
+        p :global(.btn) {
+            margin-top: 1rem;
+        }
+
         @media only screen and (min-width: 960px) {
             flex-direction: row;
             column-gap: 50px;
-            max-width: 50vw;
+            article {
+                max-width: 40vw;
+            }
         }
     }
     .gradient {

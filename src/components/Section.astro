@@ -3,32 +3,30 @@ import Wrapper from "./Wrapper.astro";
 
 interface Props {
     title?: string;
+    /** Vlastni kotva, jinak se odvodi z nadpisu. */
+    id?: string;
+    eyebrow?: string;
     perex?: string;
 }
 
-const { title, perex } = Astro.props;
+const { title, eyebrow, perex, id: customId } = Astro.props;
 
 // Sekce bez nadpisu (galerie) drive generovala prazdny <h2> a prazdne id.
-const id = title
+const id = customId ?? (title
     ? title
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase()
           .trim()
           .replace(/\s+/g, "-")
-    : undefined;
+    : undefined);
 ---
 
 <Wrapper id={id}>
     <div>
-        {
-            title && (
-                <h2 class="section-heading">
-                    {title}
-                </h2>
-            )
-        }
-        {perex && <p set:html={perex} class="perex" />}
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {title && <h2 class="section-title">{title}</h2>}
+        {perex && <p set:html={perex} class="section-perex" />}
         <slot />
     </div>
 </Wrapper>
@@ -42,17 +40,5 @@ const id = title
         @media only screen and (min-width: 960px) {
             padding: 8rem 0 5rem;
         }
-    }
-    h2 {
-        text-align: center;
-    }
-    .perex {
-        text-align: center;
-        font-size: 1.8rem;
-        line-height: 1.5;
-        color: var(--text-color);
-        padding-bottom: 4rem;
-        max-width: 80vw;
-        margin: 0 auto;
     }
 </style>

@@ -1,86 +1,188 @@
 ---
 import Logo from "./Logo.astro"
-import instagram from "../assets/svg/instagram.svg"
-import linkedin from "../assets/svg/linkedin.svg"
-import { Image } from "astro:assets"
+import Wrapper from "./Wrapper.astro"
+
+const nav = [
+    { href: "#o-mne", title: "Jak začneme" },
+    { href: "#cenik", title: "Ceník" },
+    { href: "#reference", title: "Reference" },
+    { href: "#poukaz", title: "Dárkové poukazy" },
+]
 ---
 
 <footer>
-    <Logo />
-    <div class="socials">
-        <a href="https://www.instagram.com/hejbnisebou/">
-            <Image src={instagram} alt="Instagram - Hejbnisebou" />
-        </a>
-        <a href="https://www.linkedin.com/in/hejbni-sebou-694042344/">
-            <Image src={linkedin} alt="LinkedIn - Hejbnisebou" />
-        </a>
-    </div>
-    <address class="footer-info">
-        Kristýna Ivančíková<br /> IČO: 10926020<br />
-        Sídlo: Palackého 1030, Jirkov<br />
-    </address>
-    <p class="footer-info">
-        ©Hejbnisebou{" "}
-        <span id="current-year"></span>
-        <br />
-        <a href="https://www.sarkalaxova.com">Vytvořila Šárka Laxová</a>
-    </p>
+    <Wrapper>
+        <div class="grid">
+            <div class="brand">
+                <Logo />
+                <address>
+                    Kristýna Ivančíková<br />
+                    IČO: 10926020<br />
+                    Palackého 1030, Jirkov
+                </address>
+            </div>
+
+            <nav aria-label="Patička">
+                <p class="label">Navigace</p>
+                <ul>
+                    {
+                        nav.map((item) => (
+                            <li>
+                                <a href={item.href}>{item.title}</a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+
+            <div>
+                <p class="label">Sítě</p>
+                <ul>
+                    <li>
+                        <a
+                            href="https://www.instagram.com/hejbnisebou/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.linkedin.com/in/hejbni-sebou-694042344/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact">
+                <p class="label">Kontakt</p>
+                <ul>
+                    <li>
+                        <a href={`tel:${import.meta.env.CONTACT_PHONE}`}>
+                            +420 733 220 702
+                        </a>
+                    </li>
+                    <li>
+                        <a href={`mailto:${import.meta.env.CONTACT_EMAIL}`}>
+                            hejbnisebou@gmail.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="legal">
+            <span>©Hejbnisebou <span id="current-year"></span></span>
+            <a
+                href="https://www.sarkalaxova.com"
+                target="_blank"
+                rel="noopener noreferrer">Vytvořila Šárka Laxová</a
+            >
+        </p>
+    </Wrapper>
 </footer>
 
 <script>
-    const currentYear = new Date().getFullYear()
     const yearElement = document.getElementById("current-year")
     if (yearElement) {
-        yearElement.textContent = currentYear.toString()
+        yearElement.textContent = new Date().getFullYear().toString()
     }
 </script>
 
 <style>
+    /* Plocha o odstin svetlejsi nez stranka, nahore zaoblena */
     footer {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
+        /* Stejna max. sirka jako navigace a obsah sekci */
+        max-width: var(--max-container-width);
+        margin: clamp(5rem, 10vw, 10rem) auto 0;
         padding-top: 6rem;
         padding-bottom: 3rem;
-        margin-top: clamp(5rem, 10vw, 10rem);
+        margin-bottom: 2rem;
+        border-radius: 20px;
+        background: #2b2b2b;
     }
-    footer::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        content: "";
-        display: block;
-        height: 1px;
-        background: var(--orange-color);
-        opacity: 0.4;
-    }
-    .footer-info {
-        font-size: 1.6rem;
-        opacity: 0.7;
-        text-align: center;
-    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4rem 2.4rem;
 
-    .copyright a {
-        opacity: 0.7;
+        @media only screen and (min-width: 700px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: 2fr repeat(3, minmax(0, 1fr));
+            gap: 6rem;
+        }
     }
-    #current-year {
-        font-weight: bold;
+    /* Mobil: identita a kontakt pres celou sirku, navigace a site vedle sebe */
+    .brand,
+    .contact {
+        grid-column: 1 / -1;
     }
-    .socials {
+    @media only screen and (min-width: 700px) {
+        .contact {
+            grid-column: auto;
+        }
+    }
+    .brand {
         display: flex;
-        gap: 2rem;
+        flex-direction: column;
+        gap: 2.4rem;
+
+        @media only screen and (min-width: 700px) {
+            grid-column: 1 / -1;
+        }
+        @media only screen and (min-width: 960px) {
+            grid-column: auto;
+        }
     }
-    .socials img {
-        width: 30px;
-        height: 30px;
-        opacity: 0.6;
+    address {
+        font-style: normal;
+        line-height: 1.6;
+        color: var(--text-color);
+    }
+    /* Nenapadny popisek sloupce - tlumena seda, bez oranzove */
+    .label {
+        padding-bottom: 1.2rem;
+        color: #8a8a8a;
+        font-size: 1.3rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    address a,
+    li a,
+    .legal a {
+        color: var(--text-color);
         transition: var(--transition);
     }
-    .socials img:hover {
-        opacity: 1;
+    address a:hover,
+    li a:hover,
+    .legal a:hover {
+        color: var(--white-color);
+    }
+    .legal {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding-top: 6rem;
+        font-size: 1.4rem;
+        color: var(--text-color);
+
+        @media only screen and (min-width: 700px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+    #current-year {
+        font-weight: 600;
     }
 </style>

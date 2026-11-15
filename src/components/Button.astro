@@ -3,36 +3,35 @@ interface Props {
     title: string
     variant?: "primary" | "secondary"
     type?: "button" | "submit"
-    /** Kdyz je vyplneny, komponenta se vykresli jako <a>, jinak jako <button>.
-     *  Drive se <Button> vkladal dovnitr <a>, coz je nevalidni vnoreni
-     *  interaktivnich prvku a vytvarelo to dva tab stopy na jeden ovladac. */
+    /** Kdyz je vyplneny, komponenta se vykresli jako <a>, jinak jako <button>. */
     href?: string
+    /** Nove okno. Bez zadani se otevre v novem okne kazdy odkaz ven (http/https). */
+    newTab?: boolean
     id?: string
 }
 
-const { title, variant = "primary", type = "button", href, id } = Astro.props
+const {
+    title,
+    variant = "primary",
+    type = "button",
+    href,
+    newTab,
+    id,
+} = Astro.props
 
 const Tag = href ? "a" : "button"
-const tagProps = href ? { href } : { type }
+// Odkazy ven (http/https) se otevrou v novem okne
+const external = Boolean(href && /^https?:\/\//.test(href))
+const opensInNewTab = newTab ?? external
+const tagProps = href
+    ? opensInNewTab
+        ? { href, target: "_blank", rel: "noopener noreferrer" }
+        : { href }
+    : { type }
 ---
 
 <Tag class:list={["btn", variant]} id={id} {...tagProps}>
-    <svg
-        width="14"
-        height="14"
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        focusable="false"
-    >
-        <path
-            d="M18 1.93846L4.70769 15.2308H16.6154V18H0V1.38462H2.76923V13.2923L16.0615 0L18 1.93846Z"
-            fill="currentColor"></path>
-    </svg>
-    <span>
-        {title}
-    </span>
+    <span>{title}</span>
 </Tag>
 
 <style>
@@ -40,27 +39,22 @@ const tagProps = href ? { href } : { type }
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.6rem;
         gap: 10px;
-        text-transform: uppercase;
-        font-weight: 500;
-        line-height: 1;
+        letter-spacing: 0.01em;
+        line-height: 1.2;
         cursor: pointer;
         text-wrap: nowrap;
         transition: var(--transition);
         width: max-content;
     }
     .primary {
-        border: 1px solid var(--background-color);
         background-color: var(--orange-color);
-        border-radius: 999px;
-        padding: 10px 16px;
+        border-radius: 8px;
+        padding: 1.2rem 2.4rem;
         color: var(--background-color);
     }
     .primary:hover {
-        background-color: var(--background-color);
-        color: var(--orange-color);
-        border-color: var(--orange-color);
+        background-color: #e69900;
     }
     .secondary {
         color: var(--white-color);

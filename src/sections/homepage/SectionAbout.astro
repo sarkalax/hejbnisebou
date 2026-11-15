@@ -1,98 +1,143 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from "astro:assets"
 
-import Wrapper from "../../components/Wrapper.astro";
+import Button from "../../components/Button.astro"
+import Wrapper from "../../components/Wrapper.astro"
 
-import about from "../../assets/img/about.jpg";
-import approach from "../../assets/img/about2.jpg";
+import about from "../../assets/img/about.jpg"
+
+const steps = [
+    {
+        title: "První krok zvládneš i v pyžamu.",
+        text: "Vybereš si termín a dáme si 20 minut na nezávazný pokec. Předem ti pošlu krátký dotazník, ať víme, o čem se budeme bavit. Ty mi řekneš, co potřebuješ, já ti povím, jak ti můžu pomoct.",
+    },
+    {
+        title: "Žádný trénink přes kopírák.",
+        text: "Na vstupním tréninku poznám tvoje možnosti, silné stránky i omezení. Společně nastavíme způsob tréninku, který bude dávat smysl právě tobě. Dostaneš vlastní plán a přístup do klientské sekce.",
+    },
+    {
+        title: "Teď už žádný „od pondělí“.",
+        text: "Začínáme trénovat! Máme domluvené pravidelné tréninky, každý týden si dáme 20minutový videohovor a já průběžně sleduju tvoje výsledky, monitoruju zátěž a upravuju plán podle toho, jak se posouváš.",
+    },
+]
 ---
 
 <Wrapper id="o-mne">
     <div class="about-section">
-        <Image
-            src={about}
-            alt="Fyzio fitness osobní trenér Chomutov"
-            width={900}
-        />
-        <article>
-            <h2 class="section-heading">O mně</h2>
-            <p>
-                Jmenuju se Kristýna Ivančíková, je mi 31 let, trénuju v
-                Chomutově, Jirkově a v Praze a našla jsem smysl v tom, co dělám.
-                Baví mě sledovat, jak se mým klientům na tréninku postupem času
-                rozšiřuje úsměv (hlavně po tréninku) a jak se pohyb pozitivně
-                propisuje do jejich života. Pohyb mě provází celý život, mám za
-                sebou 26 let sportovní historie. Moje pohybová paleta je pestrá
-                - zkoušela jsem téměř všechny sporty, propadla xc cyklistice a
-                kvůli bolesti zad ze sezení v kanceláři jsem se dostala k józe,
-                kalistenice a mobilitě. Nejvíc mě teď baví
-                <span class="highlight-text">silový trénink</span>, <span
-                    class="highlight-text">švihadlo</span
-                >,
-                <span class="highlight-text">tenis a freediving</span>.
-            </p>
-        </article>
-
-        <article>
-            <h2 class="section-heading">Proč mít trenéra</h2>
-            <p>
-                Ušetřím ti spoustu času i bolesti a urychlím tvoje výsledky.
-                Rozumím anatomii, principům pohybu lidského těla a neustále
-                doplňuju svoje znalosti. Dohlédnu na to, aby sis neublížil a
-                efektivně dosáhl cíle. Prošla jsem trnitou cestou za silným a
-                zdravým tělem a svoje zkušenosti aplikuju do tréninku. Každý je
-                svým způsobem unikátní hlavolam, proto ke všem přistupuju
-                nadmíru individuálně. Můj přístup je komplexní - to, jak se
-                cítíme uvnitř i navenek, ovlivňuje nás i naše okolí.
-            </p>
-        </article>
-        <Image src={approach} alt="Osobní trenér Chomutov" width={900} />
+        <p class="eyebrow">Jak začneme</p>
+        <h2 class="section-title">Neboj, nezačneme angličáky</h2>
+        <div class="content">
+            <div class="start">
+                <ol>
+                    {
+                        steps.map((step, index) => (
+                            <li>
+                                <span class="num" aria-hidden="true">
+                                    <span>
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+                                </span>
+                                <h3>{step.title}</h3>
+                                <p>{step.text}</p>
+                            </li>
+                        ))
+                    }
+                </ol>
+                <p class="cta-text">Tak co, dáme těch prvních 20 minut?</p>
+                <Button href="#kontaktuj-me" title="Kontaktuj mě" />
+            </div>
+            <div class="photo">
+                <Image
+                    src={about}
+                    alt="Fyzio fitness osobní trenér Chomutov"
+                    width={900}
+                />
+            </div>
+        </div>
     </div>
 </Wrapper>
 
 <style>
     .about-section {
-        position: relative;
-        display: grid;
-        grid-template-columns: 1fr;
-        width: 100%;
-        row-gap: 3rem;
-        padding-top: clamp(2rem, 10vw, 8rem);
+        padding-top: 4rem;
         padding-bottom: 5rem;
 
-        @media only screen and (min-width: 760px) {
-            grid-template-columns: 1fr 1fr;
-            grid-auto-rows: 1fr;
-            row-gap: 0;
+        @media only screen and (min-width: 960px) {
+            padding-top: 8rem;
         }
     }
-    .about-section img:nth-of-type(1) {
-        @media only screen and (max-width: 760px) {
-            max-height: 330px;
-            order: 2;
+    .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: 3fr 2fr;
+            gap: 2rem;
         }
     }
-    .about-section img:nth-of-type(2) {
-        @media only screen and (max-width: 760px) {
-            display: none;
-        }
+    /* Fotka se natahne na vysku textu vedle ni, takze oba sloupce
+       konci ve stejne vysce. */
+    .photo {
+        position: relative;
+        min-height: 33rem;
+        overflow: hidden;
+        border-radius: 20px;
     }
-    article {
-        @media only screen and (min-width: 760px) {
-            padding: 4rem;
-        }
-    }
-    .first-block {
-        flex-direction: column-reverse;
-    }
-    article:nth-of-type(2) {
-        padding-left: 0;
-    }
-    img {
+    .photo :global(img) {
+        position: absolute;
+        inset: 0;
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        max-height: 500px;
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding-bottom: 2.4rem;
+    }
+    /* Velke bile cislo oriznute v polovine vysky */
+    li {
+        padding: 1rem 0 3rem;
+    }
+    .num {
+        display: block;
+        height: 0.65em;
+        overflow: hidden;
+        font-family: "Montserrat";
+        font-size: clamp(9rem, 12vw, 13rem);
+        font-weight: 700;
+        line-height: 1;
+        color: #4a4a4a;
+    }
+    .num span {
+        display: block;
+        margin-left: -0.04em;
+    }
+    h3 {
+        padding-top: 1.6rem;
+        font-family: "Montserrat";
+        font-size: clamp(2.4rem, 2.6vw, 3.2rem);
+        font-weight: 300;
+        line-height: 1.2;
+    }
+    li p {
+        padding-top: 1.2rem;
+        font-size: 1.6rem;
+        line-height: 1.55;
+        max-width: 80ch;
+    }
+    .cta-text {
+        padding-bottom: 1.6rem;
+        font-size: 1.8rem;
+        color: var(--white-color);
+    }
+    .start :global(.btn) {
+        text-wrap: wrap;
+        text-align: left;
+        max-width: 100%;
     }
 </style>

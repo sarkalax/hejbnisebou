@@ -1,110 +1,287 @@
 ---
+import Button from "../../components/Button.astro"
 import Section from "../../components/Section.astro"
-import Wrapper from "../../components/Wrapper.astro"
+
+const googleUrl =
+    "https://www.google.cz/maps/place/Hejbni+sebou/@50.4553503,13.4044179,17z/data=!4m8!3m7!1s0x470a1baa4f4b39b3:0xe7493713ac42a0f8!8m2!3d50.4553503!4d13.4069928!9m1!1b1!16s%2Fg%2F11vzz4w764"
 
 const items = [
     {
-        name: "Ivana (51)",
-        text: "Každý máme své tělo jinak schopné a můžete vzít jed na to, že dříve, či později spolu s ní (a DÍKY ní !!!) objevíte, co nefunguje a co je třeba s tím udělat. <br/> Mám tu holku vážně moc ráda, vždy se na cvičení s ní těším.  Cvičení se mi stalo pevným bodem mého týdenního programu. Čistí mi hlavu, uvolňuje dlouhodobě ztuhlá místa, posouvá hranice ve vnímání svého těla i hranice jeho pohyblivosti … a co si budeme povídat, díky cvičení s ní jsem si oblíbila tílka! Přece ty vymakané ruce nebudu schovávat! … a co teprve lýtka, stehna… a tak dááál. Chodím k ní já a začal k ní chodit můj syn.",
+        name: "Edita Jirova",
+        google: true,
+        text: "Profesionální a zároveň komplexní přístup. V mém případě je trénink zaměřený přímo na konkrétní sporty, takže cvičení dávají smysl nejen obecně, ale hlavně pro to, co skutečně dělám. A výsledek je rozhodně znát 💪 <br/><br/> Týna vždy připraví plán na míru, který není potřeba odcvičit v posilovně, většinu tréninku zvládnu prakticky kdekoliv a s minimem vybavení. Je schopná se přizpůsobit mým potřebám a aktuálním cílům. <br/><br/> Za mě skvělá spolupráce a rozhodně doporučuju. Big up! 👍",
     },
     {
-        name: "Jitka (49) a Klárka (17)",
-        text: "Kristýna je jako trenérka úžasná. S tímto způsobem cvičení jsem se nikdy nepotkala, cvičit jsem začala spolu s dcerou, která potřebovala podporu do začátku. Kristýna sestavila trénink jak pro mne, tak pro dceru. Každé to, co jsme potřebovaly a ani netušily, co všechno zvládneme.",
+        name: "Aneta Routnerová",
+        google: true,
+        text: "K Týnce jsem přišla s bolestmi kolen, šíje a páteře a jsem moc ráda, že jsem si vybrala právě ji. ❤️ Šíje mě dnes už skoro vůbec nebolí, kolena se postupně zlepšují a pokroky vidím i u páteře. Moc oceňuji její lidský a individuální přístup. Když mě při cviku něco bolí, vždycky najde jinou variantu, která mi vyhovuje. Nikdy nemám pocit, že bych něco musela zvládnout za každou cenu (v bolestech) a to je pro mě fakt důležitý. Je vidět, že jí záleží na tom, aby cvičení opravdu pomáhalo a člověk se cítil dobře. Za mě velká spokojenost a určitě doporučuju! 😊",
     },
     {
-        name: "Petra (53)",
-        text: "S Týnkou cvičím už víc než rok. Nikdy před tím jsem necvičila. Měla jsem velmi silné bolesti spojené s vyhřezlou ploténkou a další problémy zaviněné sedavým způsobem života. V té době jsem si myslela, že skončím co nevidět v invalidním důchodu.  Začala jsem s ní chodit cvičit a bolest začala postupně mizet. Už za pár týdnů byla prakticky pryč. Co se mi na Týnce líbí je, že se zajímá o to, co při cvičení (i po něm) cítím, jestli mě něco nebolí, a jestli nemám nějaké další obtíže. Cvičení přizpůsobuje mým potřebám. To, že mi do života vstoupila trenérka Týnka, byla velké štěstí. Ona ví, co dělá, je na ni vidět, že jí to baví, je empatická a je důsledná.",
+        name: "Hana Maskova",
+        google: true,
+        text: "Díky Kristýně jsem poprvé poznala kouzlo silového tréninku. A i když bych tomu na začátku nevěřila, možná ho začínám mít i ráda! 😁 <br/> Tréninky jsou vždy perfektně sestavené, a to nejen ty společné, ale i domácí úkoly. Výsledky mluví za vše – jsem silnější, cítím se skvěle a mám o 7 kg tuku méně! <br/> Děkuji Kristýně za skvělé vedení, motivaci a trpělivost!",
     },
     {
-        name: "Mathias (46)",
-        text: "I gain within three months soo many muscles 💪 with Kristyna that all my shirts don’t fit anymore. I feel more healthy and I’m much stronger. Now we work together on me getting a sixpack. Training with her never gets boring as she varies it a lot and adopts it to my needs",
+        name: "Terezka Tomaštíková",
+        google: true,
+        text: "Při běhu jsem si natrhla lýtkový sval a měla jsem s tím docela trápení. V podstatě jsem týden nemohla normálně chodit. Nejdřív jsem byla u fyzioterapeutky, která mi pomohla s akutní bolestí a následně mi doporučila Kristýnu. Když jsme začínaly, pořád mě lýtko bolelo při chůzi a jakýkoliv výskok byl problém, o běhaní ani nemluvím. Kristýna mi každý týden upravovala trénink podle toho, jak se lýtko zrovna hojilo, a postupně jsme se dostávaly zpátky k normální chůzi a běhu. Upřímně jsem nečekala, že to půjde tak rychle. Super je i možnost pokračovat dál online za nižší cenu. Ještě jednou díky! ❤️",
     },
     {
-        name: "Honza (39 let)",
-        text: "Kristýna, na rozdíl ode mě, ví, co dělá. A dokáže mi to vysvětlit, takže potom vím co a jak.",
+        name: "Jana Bali",
+        google: true,
+        text: "Zaplatila jsem si online spolupráci kvůli bolesti kolene při běhu a měla jsem trochu obavy, jak bude vše fungovat bez osobních tréninků. Klientský systém a pravidelný dohled nad plněním tréninků jsou ale skvělé. Kristýna navíc umí cviky a techniku vysvětlit tak jednoduše a přesně, že člověk ví, co má dělat, i přes obrazovku. Se vším mi pomohla a nemůžu ji víc vynachválit!",
     },
 ]
+
+// Dlouhe recenze se ve vychozim stavu zkraceji, rozbali se pres "+".
+// Jestli text opravdu presahuje, zjisti skript az podle vykresleni.
+const initial = (name: string) => name.trim().charAt(0).toUpperCase()
 ---
 
-<Section title="Klienti o mně říkají">
-    <Wrapper>
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                {
-                    items.map((item) => (
-                        <div class="swiper-slide">
-                            <p set:html={item.text} />
-                            <h3>{item.name}</h3>
-                        </div>
-                    ))
-                }
+<Section id="reference" eyebrow="Reference" title="Klienti o mně říkají">
+    <ul class="reviews">
+        <li class="summary">
+            <div class="top">
+                <p class="score">5,0<span>/5</span></p>
+                <p class="small">
+                    Přečti si, co o spolupráci říkají klienti, kteří se mnou
+                    trénují.
+                </p>
             </div>
-            <button class="swiper-button-prev"></button>
-            <button class="swiper-button-next"></button>
-        </div>
-    </Wrapper>
+            <div class="bottom">
+                <div>
+                    <p class="stars" aria-label="5 z 5 hvězdiček">★★★★★</p>
+                    <p class="count">25 recenzí na Googlu</p>
+                </div>
+            </div>
+            <Button href={googleUrl} title="Všechny recenze" />
+        </li>
+        {
+            items.map((item) => (
+                <li class="review">
+                    <div class="who">
+                        <span class="avatar" aria-hidden="true">
+                            {initial(item.name)}
+                        </span>
+                        <div>
+                            <h3>{item.name}</h3>
+                            <p class="source">
+                                {item.google ? "Recenze na Googlu" : "Klient"}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <p class="stars" aria-label="5 z 5 hvězdiček">
+                                ★★★★★
+                            </p>
+                            <button
+                                class="more"
+                                type="button"
+                                aria-expanded="false"
+                                aria-label="Rozbalit celou recenzi"
+                                hidden
+                            >
+                                +
+                            </button>
+                        </div>
+                        <p
+                            class="text clamped"
+                            set:html={item.text}
+                        />
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
 </Section>
 
 <script>
-    const container = document.querySelector<HTMLElement>(".swiper")
+    const reviews = document.querySelectorAll<HTMLElement>(".review")
 
-    if (container) {
-        const load = async () => {
-            const { initReviewSlider } =
-                await import("../../scripts/reviewSlider")
-            initReviewSlider(container)
-        }
-
-        if ("IntersectionObserver" in window) {
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    if (entries.some((entry) => entry.isIntersecting)) {
-                        observer.disconnect()
-                        load()
-                    }
-                },
-                { rootMargin: "300px" },
-            )
-            observer.observe(container)
-        } else {
-            load()
-        }
+    // Tlacitko "+" se ukaze jen u recenzi, jejichz text je zkraceny
+    const updateButtons = () => {
+        reviews.forEach((review) => {
+            const button = review.querySelector<HTMLButtonElement>(".more")
+            const text = review.querySelector<HTMLElement>(".text")
+            if (!button || !text) {
+                return
+            }
+            // Rozbalenou recenzi nemerime, tlacitko musi zustat pro sbaleni
+            if (button.getAttribute("aria-expanded") === "true") {
+                return
+            }
+            button.hidden = text.scrollHeight <= text.clientHeight + 1
+        })
     }
+
+    reviews.forEach((review) => {
+        const button = review.querySelector<HTMLButtonElement>(".more")
+        const text = review.querySelector<HTMLElement>(".text")
+        button?.addEventListener("click", () => {
+            const open = button.getAttribute("aria-expanded") !== "true"
+            text?.classList.toggle("clamped", !open)
+            button.setAttribute("aria-expanded", String(open))
+            button.setAttribute(
+                "aria-label",
+                open ? "Sbalit recenzi" : "Rozbalit celou recenzi",
+            )
+        })
+    })
+
+    updateButtons()
+    window.addEventListener("resize", updateButtons)
+    // Po nacteni fontu se muze zalomeni radku zmenit
+    document.fonts?.ready.then(updateButtons)
 </script>
 
 <style>
-    .swiper {
-        max-width: 1200px;
-    }
-    .swiper-slide {
-        text-align: center;
-        align-self: center;
-        padding: 3rem 3.5rem;
+    /* Mrizka misto sloupcu: v kazde rade konci sbalene karty ve stejne
+       vysce. Rozbalena karta roste sama, ostatni zustavaji. */
+    .reviews {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.6rem;
+        align-items: start;
 
-        @media only screen and (max-width: 760px) {
-            margin: 0 auto;
+        @media only screen and (min-width: 700px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        @media only screen and (min-width: 1100px) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
-    .swiper-slide h3 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
+
+    /* Souhrnna karta - decentni, bez gradientu, stejny zaklad jako ostatni */
+    .summary {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2.8rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .top {
+        display: flex;
+        padding-bottom: 6rem;
+        align-items: flex-start;
+        gap: 1.6rem;
+    }
+    .score {
+        flex-shrink: 0;
+        font-family: "Montserrat";
+        font-size: clamp(5rem, 6vw, 6.4rem);
+        font-weight: 700;
+        line-height: 1;
+        color: var(--white-color);
+    }
+    .score span {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--text-color);
+        padding-left: 0.4rem;
+    }
+    .small {
+        color: var(--text-color);
+        font-size: 1.4rem;
+        line-height: 1.45;
+    }
+    .bottom .stars {
+        font-size: 1.6rem;
+    }
+    .count {
+        font-size: 1.3rem;
+        color: var(--text-color);
+    }
+    .summary :global(.btn) {
+        margin-top: auto;
+        width: 100%;
+        padding: 1.4rem 1.6rem;
+    }
+
+    .review {
+        display: flex;
+        flex-direction: column;
+    }
+    .who,
+    .body {
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .who {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.4rem 2rem;
+    }
+    .avatar {
+        display: grid;
+        flex-shrink: 0;
+        place-items: center;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: rgba(255, 170, 0, 0.25);
+        color: var(--white-color);
+        font-weight: 600;
+    }
+    .who h3 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+    .source {
+        font-size: 1.3rem;
+        color: var(--text-color);
+        opacity: 0.8;
+    }
+    .body {
+        padding: 2.4rem 2.4rem 2.8rem;
+    }
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1.6rem;
+    }
+    .stars {
         color: var(--orange-color);
-        opacity: 0.6;
+        letter-spacing: 0.1em;
     }
-    .swiper-button-prev {
-        left: 0;
-    }
-    .swiper-button-next {
-        right: 0;
-    }
-    .swiper-button-prev::after,
-    .swiper-button-next::after {
-        color: var(--orange-color);
-        opacity: 0.6;
+    .more {
+        display: grid;
+        place-items: center;
+        width: 3.2rem;
+        height: 3.2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        color: var(--white-color);
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
         transition: var(--transition);
     }
-    .swiper-button-prev:hover::after,
-    .swiper-button-next:hover::after {
-        opacity: 1;
+    .more[hidden] {
+        display: none;
+    }
+    .more:hover {
+        border-color: var(--orange-color);
+        color: var(--orange-color);
+    }
+    .more[aria-expanded="true"] {
+        transform: rotate(45deg);
+    }
+    .text {
+        line-height: 1.55;
+    }
+    .text.clamped {
+        /* Stejna vyska u vsech sbalenych recenzi, i kdyz jsou kratsi */
+        min-height: calc(8 * 1.55em);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 8;
+        line-clamp: 8;
+        overflow: hidden;
     }
 </style>

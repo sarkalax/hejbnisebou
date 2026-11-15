@@ -8,16 +8,16 @@ import Logo from "./Logo.astro"
     <nav id="navigation" aria-label="Hlavní">
         <ul id="links">
             <li>
-                <a href="#o-mne">o mně</a>
+                <a href="#o-mne">Jak začneme</a>
             </li>
             <li>
-                <a href="#co-nabizim">služby</a>
+                <a href="#cenik">Ceník</a>
             </li>
             <li>
-                <a href="#cenik">dárkové poukazy</a>
+                <a href="#reference">Reference</a>
             </li>
             <li>
-                <a href="#cenik">ceník</a>
+                <a href="#poukaz">Dárkové poukazy</a>
             </li>
             <li>
                 <Button href="#kontaktuj-me" title="Kontakt" />
@@ -35,52 +35,19 @@ import Logo from "./Logo.astro"
             <span aria-hidden="true"></span>
         </button>
     </nav>
-    <Button href="#kontaktuj-me" title="Kontakt" id="contact-button" />
+    <Button href="#kontaktuj-me" title="Kontaktuj mě" id="contact-button" />
 </header>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const body = document.body
-        const header = document.querySelector("header")
         const navigation = document.getElementById("navigation")
         const hamburger = document.getElementById("hamburger")
         const links = document.querySelectorAll("#links a")
 
-        if (!header || !hamburger || !navigation) {
+        if (!hamburger || !navigation) {
             return
         }
-
-        // Sirka okna se cache-uje a prepisuje az pri resize, aby cteni
-        // layoutu uvnitr scroll handleru nevynucovalo reflow.
-        let isDesktop = window.innerWidth > 768
-        let lastScroll = window.scrollY
-        let ticking = false
-
-        const updateHeader = () => {
-            ticking = false
-            const currentScroll = window.scrollY
-
-            if (!isDesktop) {
-                header.style.transform = "translateY(0)"
-            } else if (currentScroll < lastScroll || currentScroll === 0) {
-                header.style.transform = "translateY(0)"
-            } else if (currentScroll > lastScroll) {
-                header.style.transform = "translateY(-100%)"
-            }
-            lastScroll = currentScroll
-        }
-
-        window.addEventListener(
-            "scroll",
-            () => {
-                if (ticking) {
-                    return
-                }
-                ticking = true
-                requestAnimationFrame(updateHeader)
-            },
-            { passive: true },
-        )
 
         // Stav menu drzi jedna funkce, aby se aria-expanded nikdy nerozesla
         // s vizualnim stavem.
@@ -97,8 +64,7 @@ import Logo from "./Logo.astro"
         }
 
         window.addEventListener("resize", () => {
-            isDesktop = window.innerWidth > 768
-            if (isDesktop) {
+            if (window.innerWidth > 768) {
                 setMenu(false)
             }
         })
@@ -132,7 +98,7 @@ import Logo from "./Logo.astro"
         left: 1rem;
         z-index: 1000;
         padding: 1rem 1.5rem;
-        border-radius: 999px;
+        border-radius: 14px;
         background: var(--orange-color);
         color: var(--background-color);
         font-size: 1.6rem;
@@ -152,33 +118,42 @@ import Logo from "./Logo.astro"
         margin: 0 auto;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem;
+        /* Stejne postranni odsazeni jako Wrapper, aby logo a tlacitko
+           lezely na stejne ose x jako texty v sekcich. */
+        padding: 2.4rem 2rem;
         max-width: var(--max-container-width);
         transition: var(--transition);
         z-index: 999;
 
         @media only screen and (min-width: 960px) {
-            padding: 1.8rem 2.5rem;
+            padding: 2.4rem 2.5rem;
         }
     }
-    header::after {
+    /* Plovouci "pilulka" - polopruhledne rozmazane pozadi se zaoblenim */
+    header::before {
         content: "";
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin-left: -100vh;
-        margin-right: -100vh;
-        height: 100%;
-        background: linear-gradient(
-            rgba(26, 26, 26, 0.4) 60%,
-            rgba(0, 0, 0, 0)
-        );
+        /* Pilulka presahuje za osu textu - obsah uvnitr ma odsazeni 1.2rem */
+        inset: 1.4rem 0.8rem;
+        border-radius: 14px;
+        background: rgba(52, 52, 52, 0.72);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+        backdrop-filter: blur(16px) saturate(140%);
         z-index: -1;
 
-        @media only screen and (min-width: 768px) {
-            width: 200vw;
+        @media only screen and (min-width: 960px) {
+            inset: 1.4rem 0.9rem;
         }
+    }
+    /* Mensi logo, aby se vesel do pilulky */
+    header :global(.logo svg) {
+        width: auto;
+        height: 3.6rem;
+    }
+    header :global(.logo span) {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        max-width: 5rem;
     }
     #links {
         display: none;
@@ -192,25 +167,44 @@ import Logo from "./Logo.astro"
         position: relative;
         overflow-x: hidden;
     }
-    #links li::after {
-        position: absolute;
-        content: "";
-        height: 1px;
-        bottom: 0px;
-        left: 0;
-        width: 100%;
-        transition: 0.3s ease;
-
-        @media only screen and (max-width: 768px) {
-            display: none;
+    /* Podtrzeni ma stejnou animaci jako odkaz @hejbnisebou: cara je
+       siroka 300 % a vzorek bila / pruhledna / bila se posouva doleva.
+       V klidu je viditelny jen prostredni pruhledny dil, po najeti vjede
+       cara zprava - stejnym smerem jako u @hejbnisebou. */
+    @media only screen and (min-width: 768px) {
+        #links li:not(:last-of-type) a {
+            position: relative;
+            display: block;
+            overflow: hidden;
         }
-    }
-    #links li:hover::after {
-        background: var(--white-color);
+        #links li:not(:last-of-type) a::after {
+            position: absolute;
+            content: "";
+            height: 1px;
+            bottom: 0;
+            left: -100%;
+            width: 300%;
+            background: linear-gradient(
+                90deg,
+                var(--white-color) 33.33%,
+                transparent 33.33%,
+                transparent 66.66%,
+                var(--white-color) 66.66%
+            );
+            transition: 0.8s ease;
+        }
+        #links li:not(:last-of-type) a:hover::after {
+            left: -200%;
+        }
     }
     /* Prepina se jen viditelnost - display: block by prebil .btn { display: flex }
        z komponenty Button (id ma vyssi specificitu nez trida). */
+    /* Mensi tlacitko ma mensi odsazeni, sipka se proto posune blize k okraji */
+    :global(#contact-button .arrow) {
+        right: 0.6rem;
+    }
     :global(#contact-button) {
+        padding: 1rem 1.8rem;
         display: none;
 
         @media only screen and (min-width: 768px) {
@@ -231,7 +225,7 @@ import Logo from "./Logo.astro"
         display: flex;
         gap: 3rem;
         flex-direction: column;
-        padding: 3rem;
+        padding: 3rem 2rem;
     }
     #navigation.is-open #links li {
         font-size: 2rem;
@@ -246,11 +240,16 @@ import Logo from "./Logo.astro"
     }
     #hamburger {
         position: absolute;
-        top: 0;
-        right: 0;
+        /* Stejna poloha otevreny i zavreny - hlavicka je vysoka 8.4rem
+           (logo 3.6rem + odsazeni 2x2.4rem), proto stred v 4.2rem. */
+        top: 4.2rem;
+        right: 2rem;
         display: flex;
         flex-direction: column;
-        margin: 2rem;
+        justify-content: center;
+        height: 2.4rem;
+        line-height: 0;
+        transform: translateY(-50%);
         overflow: hidden;
         cursor: pointer;
         z-index: 999;
@@ -261,20 +260,24 @@ import Logo from "./Logo.astro"
     }
     #hamburger span {
         display: block;
-        width: 3rem;
+        width: 2.4rem;
         height: 0.2rem;
         background: var(--white-color);
         margin: 0.3rem 0;
         transform-origin: center;
         transition: var(--transition);
     }
+    /* Posun se nejdriv provede po svisle ose, az potom rotace - jinak se
+       carka posouva po nakloneny ose a krizek ujede do strany. Rozestup
+       carek je 0.8rem (vyska 0.2rem + okraje 2x0.3rem). */
     #hamburger.is-open span:nth-of-type(1) {
-        transform: rotate(45deg) translateY(8px) scale(1.2);
+        transform: translateY(0.8rem) rotate(45deg);
     }
     #hamburger.is-open span:nth-of-type(2) {
-        transform: translateX(200%);
+        opacity: 0;
+        transform: scaleX(0);
     }
     #hamburger.is-open span:nth-of-type(3) {
-        transform: rotate(-45deg) translateY(-8px) scale(1.2);
+        transform: translateY(-0.8rem) rotate(-45deg);
     }
 </style>

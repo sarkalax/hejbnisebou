@@ -89,6 +89,37 @@ ul li {
     font-size: 2.5rem;
     font-weight: 600;
 }
+/* Jednotna hlavicka sekce: popisek + nadpis + perex, vzdy vlevo */
+.eyebrow {
+    padding-bottom: 0.8rem;
+    color: var(--orange-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.section-title {
+    max-width: 28ch;
+    padding-bottom: 2rem;
+    font-size: clamp(2.8rem, 4vw, 4.4rem);
+    font-weight: 600;
+    line-height: 1.15;
+}
+/* Nadpis bez perexu - obsah za nim potrebuje stejny odstup jako perex */
+.section-title:not(:has(+ .section-perex)) {
+    padding-bottom: 3.5rem;
+
+    @media only screen and (min-width: 960px) {
+        padding-bottom: 6rem;
+    }
+}
+.section-perex {
+    max-width: 60rem;
+    padding-bottom: 6rem;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
 .section-heading {
     text-transform: uppercase;
     padding-bottom: 3rem;

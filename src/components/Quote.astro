@@ -16,15 +16,13 @@ import svg from "../assets/svg/blockquote.svg";
         padding: 5rem 0;
     }
     blockquote {
-        background-color: var(--orange-color);
         width: 100%;
-        font-size: 2rem;
+        padding: clamp(3rem, 5vw, 5rem) 4rem;
+        font-size: clamp(2rem, 2.4vw, 2.6rem);
         font-style: italic;
+        font-weight: 500;
         text-align: center;
-        padding: clamp(5rem, 10vw, 10rem) 4rem;
-        color: var(--background-color);
-        font-weight: 700;
-        font-size: 3rem;
+        color: var(--orange-color);
     }
     .quote {
         position: absolute;

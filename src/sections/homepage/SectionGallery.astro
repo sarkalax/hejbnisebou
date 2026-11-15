@@ -1,90 +1,237 @@
 ---
 import { Image } from "astro:assets"
-import Section from "../../components/Section.astro"
 import Wrapper from "../../components/Wrapper.astro"
 
 import client1 from "../../assets/img/client1.jpg"
 import client2 from "../../assets/img/client2.jpg"
 import client3 from "../../assets/img/client3.jpg"
+
+const slides = [
+    {
+        src: client1,
+        alt: "Kristýna Ivančíková - cvičení s klientem",
+        title: "Trénink v soukromí",
+        text: "Individuální tréninky v klidu a bez rušivého okolí.",
+    },
+    {
+        src: client3,
+        alt: "Kristýna Ivančíková - cvičení s klientem",
+        title: "Korekce techniky",
+        text: "Dohlédnu na to, aby ses při tréninku nezranil.",
+    },
+    {
+        src: client2,
+        alt: "Kristýna Ivančíková - cvičení s klientem",
+        title: "Individuální vedení",
+        text: "Plán na míru tvým možnostem a cílům.",
+    },
+]
 ---
 
-<Section>
-    <Wrapper>
-        <div class="relative">
-            <div class="clients">
-                <Image
-                    src={client1}
-                    alt="Kristýna Ivančíková - cvičení s klientem"
-                    width={595}
-                    height={870}
-                />
-                <Image
-                    src={client3}
-                    alt="Kristýna Ivančíková - cvičení s klientem"
-                    width={595}
-                    height={870}
-                />
-                <Image
-                    src={client2}
-                    alt="Kristýna Ivančíková - cvičení s klientem"
-                    width={595}
-                    height={870}
-                />
+<Wrapper>
+    <div class="gallery" data-gallery>
+        <div class="head">
+            <p class="eyebrow">Přístup</p>
+            <h2 class="section-title">
+                Nejde o klasické fitness, ale o tebe a tvoje zesílení.
+            </h2>
+            <div class="arrows">
+                <button type="button" data-prev aria-label="Předchozí fotka">
+                    &larr;
+                </button>
+                <button type="button" data-next aria-label="Další fotka">
+                    &rarr;
+                </button>
             </div>
         </div>
-    </Wrapper>
-</Section>
+
+        <ul class="slides">
+            {
+                slides.map((slide, index) => (
+                    <li class:list={["slide", { active: index === 0 }]}>
+                        <button
+                            type="button"
+                            aria-label={slide.title}
+                            aria-current={index === 0}
+                        >
+                            <Image
+                                src={slide.src}
+                                alt={slide.alt}
+                                width={595}
+                                height={872}
+                                loading="lazy"
+                            />
+                            <span class="caption">
+                                <span class="title">{slide.title}</span>
+                                <span class="text">{slide.text}</span>
+                            </span>
+                        </button>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</Wrapper>
+
+<script>
+    const gallery = document.querySelector<HTMLElement>("[data-gallery]")
+
+    if (gallery) {
+        const slides = Array.from(
+            gallery.querySelectorAll<HTMLElement>(".slide"),
+        )
+        let current = 0
+
+        const show = (index: number, scroll = true) => {
+            current = (index + slides.length) % slides.length
+            slides.forEach((slide, i) => {
+                const active = i === current
+                slide.classList.toggle("active", active)
+                slide
+                    .querySelector("button")
+                    ?.setAttribute("aria-current", String(active))
+            })
+            // Jen na mobilu, kde se fotky posouvaji. Na desktopu by
+            // scrollIntoView posunul i skryty overflow a rozbil layout.
+            if (scroll && window.matchMedia("(max-width: 959px)").matches) {
+                const list = slides[current].parentElement
+                if (list) {
+                    list.scrollTo({
+                        left:
+                            slides[current].offsetLeft -
+                            (list.clientWidth - slides[current].clientWidth) /
+                                2,
+                        behavior: "smooth",
+                    })
+                }
+            }
+        }
+
+        slides.forEach((slide, i) =>
+            slide.querySelector("button")?.addEventListener("click", () => {
+                show(i)
+            }),
+        )
+        gallery
+            .querySelector("[data-prev]")
+            ?.addEventListener("click", () => show(current - 1))
+        gallery
+            .querySelector("[data-next]")
+            ?.addEventListener("click", () => show(current + 1))
+    }
+</script>
 
 <style>
-    .relative {
-        position: relative;
-        margin-inline: -2rem;
+    .gallery {
+        padding-top: 4rem;
+        padding-bottom: 8rem;
+
+        @media only screen and (min-width: 960px) {
+            padding-top: 8rem;
+        }
     }
-    .clients {
+    .head {
+        padding-bottom: 3rem;
+    }
+    .head .section-title {
+        padding-bottom: 0;
+    }
+    /* Sipky lezi tesne nad fotkami, zarovnane doprava */
+    .arrows {
         display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
+        justify-content: flex-end;
+        gap: 0.6rem;
+    }
+    .arrows button {
+        display: grid;
+        place-items: center;
+        width: 4.4rem;
+        height: 4rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--white-color);
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .arrows button:hover {
+        background: var(--orange-color);
+        color: var(--background-color);
+    }
+
+    /* Mobil: vodorovne posouvani. Desktop: aktivni fotka je siroka. */
+    .slides {
+        position: relative;
+        display: flex;
+        gap: 0.8rem;
+        height: 46rem;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        user-select: none;
-    }
-    .clients::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 15vw;
-        height: 100%;
-        pointer-events: none;
-        background: linear-gradient(
-            to right,
-            rgb(26, 26, 26, 1),
-            rgba(26, 26, 26, 0)
-        );
-    }
+        scrollbar-width: none;
 
-    .clients::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 15vw;
-        height: 100%;
-        pointer-events: none;
-        background: linear-gradient(
-            to left,
-            rgb(26, 26, 26, 1),
-            rgba(26, 26, 26, 0)
-        );
+        @media only screen and (min-width: 960px) {
+            height: 52rem;
+            overflow: hidden;
+        }
     }
+    .slide {
+        flex: 0 0 78%;
+        scroll-snap-align: center;
 
-    .clients img {
+        @media only screen and (min-width: 960px) {
+            flex: 1 1 0;
+            min-width: 0;
+            transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+    .slide.active {
+        @media only screen and (min-width: 960px) {
+            flex-grow: 2;
+        }
+    }
+    .slide button {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 14px;
+        cursor: pointer;
+    }
+    .slide img {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        max-height: 500px;
+    }
+    /* Jemny zatemnujici podklad jen kvuli citelnosti popisku na fotce */
+    .caption {
+        position: absolute;
+        inset: auto 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 6rem 2rem 2rem;
+        text-align: left;
+        color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
+    }
+    .title {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    .text {
+        max-width: 38rem;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        opacity: 0.85;
+    }
+    @media only screen and (min-width: 960px) {
+        .slide:not(.active) .text {
+            display: none;
+        }
+        .slide:not(.active) .title {
+            max-width: 12rem;
+        }
     }
 </style>

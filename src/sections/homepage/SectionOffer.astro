@@ -1,67 +1,212 @@
 ---
-import Section from "../../components/Section.astro"
-import Tabs from "../../components/Tabs.astro"
+import Button from "../../components/Button.astro"
+import PriceCard from "../../components/PriceCard.astro"
+import Wrapper from "../../components/Wrapper.astro"
 
-import kid from "../../assets/svg/kid.svg"
-import glass from "../../assets/svg/magnifying-glass.svg"
-import muscle from "../../assets/svg/muscle.svg"
-import pain from "../../assets/svg/pain.svg"
-import run from "../../assets/svg/run.svg"
-import shrimp from "../../assets/svg/shrimp.svg"
-import OfferCard from "../../components/OfferCard.astro"
-
-const items = [
-    {
-        icon: glass,
-        title: "Diagnostika",
-        category: "individual",
-    },
-    {
-        icon: muscle,
-        title: "Budování síly a kondice",
-        category: "individual",
-    },
-    {
-        icon: pain,
-        title: "Eliminace bolesti",
-        category: "individual",
-    },
-    {
-        icon: shrimp,
-        title: "Zdravá záda/corporate shrimp",
-        category: "skupinovky",
-    },
-    {
-        icon: muscle,
-        title: "Síla a kondice",
-        category: "skupinovky",
-    },
-    {
-        icon: run,
-        title: "Zdravé kyčle a kolena",
-        category: "skupinovky",
-    },
-    {
-        icon: kid,
-        title: "Dětský pohybový kroužek",
-        category: "skupinovky",
-    },
+const included = [
+    "Individuální tréninkový plán",
+    "Trénink na doma a pohybová průprava",
+    "20minutový videohovor každý týden",
+    "Kontrola plnění domácích tréninků",
+    "Klientská sekce, sledování zátěže, úpravy plánu a kontrola plnění domácích tréninků",
 ]
 
-const individual = items.filter((item) => item.category === "individual")
-const skupinovky = items.filter((item) => item.category === "skupinovky")
+const calendarUrl =
+    "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0lLEHvoXtZnIo-BMhCINbuWCDknQ0kxlgSf_12b1juJ52gE1AHpN0dPt1p62YW0_kon_SSygRY?gv=true"
+
+const options = [
+    {
+        kicker: "Trénuj odkudkoliv",
+        title: "Online",
+        text: "Osobní vedení bez ohledu na vzdálenost.",
+        count: 4,
+        features: ["4 živé online tréninky", "Individuální plán na doma"],
+        price: 2990,
+    },
+    {
+        kicker: "Trénuj v soukromí",
+        title: "Základní",
+        text: "Individuální tréninky v klidu soukromého fitness centra.",
+        count: 4,
+        features: ["4 osobní tréninky", "Soukromé fitness centrum"],
+        price: 5290,
+        featured: true,
+    },
+    {
+        kicker: "Trénuj v soukromí",
+        title: "Komplexní",
+        text: "Pro ty, kteří chtějí trénovat společně častěji.",
+        count: 8,
+        features: ["8 osobních tréninků", "Soukromé fitness centrum"],
+        price: 10490,
+    },
+]
 ---
 
-<Section
-    title="Co nabízím"
-    perex=`Nabízím <span class="highlight-text">individuální</span> tréninky šité na míru vašim cílům i <span class="highlight-text">skupinové</span> lekce plné energie, zábavy a motivace. Nabídku můžete vidět níže`
->
-    <Tabs id="nabidka" label="Typy lekci" tabs={["INDIVIDUAL", "SKUPINOVKY"]}>
-        <Fragment slot="panel-0">
-            {individual.map((item) => <OfferCard {...item} />)}
-        </Fragment>
-        <Fragment slot="panel-1">
-            {skupinovky.map((item) => <OfferCard {...item} />)}
-        </Fragment>
-    </Tabs>
-</Section>
+<Wrapper id="cenik">
+    <div class="offer">
+        <p class="eyebrow">Možnosti spolupráce</p>
+        <h2 class="section-title">
+            Jeden přístup. Tři způsoby, jak spolu trénovat.
+        </h2>
+        <p class="section-perex">
+            Ať trénuješ odkudkoliv, nebo se mnou osobně, dostaneš individuální
+            vedení. Liší se jen forma a počet společných tréninků.
+        </p>
+
+        <div class="included">
+            <h3>Co máš v každé spolupráci?</h3>
+            <ul class="checks">
+                {included.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+
+        <ul class="cards">
+            <li>
+                <PriceCard
+                    kicker="Samostatně"
+                    title="Pohybová diagnostika"
+                    price={1290}
+                    priceUnit="jednorázově"
+                />
+            </li>
+            {
+                options.map((option) => (
+                    <li>
+                        <PriceCard
+                            kicker={option.kicker}
+                            title={option.title}
+                            price={option.price}
+                            priceUnit="/ měsíc"
+                            features={option.features}
+                            featured={option.featured}
+                        >
+                            <p>{option.text}</p>
+                        </PriceCard>
+                    </li>
+                ))
+            }
+        </ul>
+
+        <div class="consultation">
+            <div class="text">
+                <h3>Nevíš, jaká spolupráce je pro tebe?</h3>
+                <p>
+                    Rezervuj si 20 minutovou online konzultaci v kalendáři
+                    zdarma. Probereme tvoje cíle, možnosti a zjistíme, jestli ti
+                    můžu pomoct.
+                </p>
+            </div>
+            <div class="action">
+                <Button href={calendarUrl} title="Rezervovat konzultaci" />
+                <p class="note">Zdarma &bull; 20 minut &bull; Nezávazně</p>
+            </div>
+        </div>
+    </div>
+</Wrapper>
+
+<style>
+    .offer {
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+        width: 100%;
+
+        @media only screen and (min-width: 960px) {
+            padding: 8rem 0 5rem;
+        }
+    }
+    /* Co je v kazde spolupraci - bez karty, dva sloupce */
+    .included {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+        padding: 0 0 4.8rem;
+
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+            gap: 4rem;
+        }
+    }
+    .included h3 {
+        font-size: clamp(2.2rem, 2.6vw, 2.8rem);
+        line-height: 1.15;
+    }
+    .included ul {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.6rem 4rem;
+        font-size: 1.8rem;
+
+        @media only screen and (min-width: 760px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+    .checks li {
+        display: flex;
+        gap: 1.2rem;
+        line-height: 1.4;
+    }
+    .checks li::before {
+        content: "";
+        flex-shrink: 0;
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-top: 0.4rem;
+        background-color: var(--orange-color);
+        mask: url('data:image/svg+xml,<svg viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><path d="M1743.858 267.012 710.747 1300.124 176.005 765.382 0 941.387l710.747 710.871 1209.24-1209.116z" fill-rule="evenodd"/></svg>')
+            center / contain no-repeat;
+    }
+
+    /* Plne barevne karty (PriceCard) */
+    .cards {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.6rem;
+
+        @media only screen and (min-width: 700px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
+        }
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.6rem;
+        }
+    }
+    .cards > li {
+        display: flex;
+    }
+    /* Konzultace - bez karty. Mobil pod sebou, desktop text vlevo
+       a tlacitko s poznamkou vpravo. */
+    .consultation {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 3rem;
+        margin-top: 6rem;
+
+        @media only screen and (min-width: 960px) {
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 6rem;
+            align-items: center;
+        }
+    }
+    .consultation h3 {
+        padding-bottom: 1.2rem;
+        font-size: clamp(2.2rem, 2.4vw, 2.6rem);
+        line-height: 1.15;
+    }
+    .consultation .text p {
+        max-width: 60rem;
+        font-size: 1.6rem;
+        line-height: 1.5;
+    }
+    .action {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.6rem;
+    }
+    .consultation .note {
+        color: var(--text-color);
+        font-size: 1.6rem;
+    }
+</style>
