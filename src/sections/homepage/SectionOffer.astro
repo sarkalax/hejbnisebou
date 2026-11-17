@@ -6,7 +6,7 @@ import Wrapper from "../../components/Wrapper.astro"
 const included = [
     "Individuální tréninkový plán",
     "Trénink na doma a pohybová průprava",
-    "20minutový videohovor každý týden",
+    "20 minutový online trénink s korekcí techniky každý týden",
     "Kontrola plnění domácích tréninků",
     "Klientská sekce, sledování zátěže, úpravy plánu a kontrola plnění domácích tréninků",
 ]
@@ -20,7 +20,7 @@ const options = [
         title: "Online",
         text: "Osobní vedení bez ohledu na vzdálenost.",
         count: 4,
-        features: ["4 živé online tréninky", "Individuální plán na doma"],
+        features: ["1x týdně online trénink s korekcí techniky", ],
         price: 2990,
     },
     {
@@ -28,7 +28,7 @@ const options = [
         title: "Základní",
         text: "Individuální tréninky v klidu soukromého fitness centra.",
         count: 4,
-        features: ["4 osobní tréninky", "Soukromé fitness centrum"],
+        features: ["1x týdně osobní trénink s korekcí techniky", "Soukromé fitness centrum"],
         price: 5290,
         featured: true,
     },
@@ -37,7 +37,7 @@ const options = [
         title: "Komplexní",
         text: "Pro ty, kteří chtějí trénovat společně častěji.",
         count: 8,
-        features: ["8 osobních tréninků", "Soukromé fitness centrum"],
+        features: ["2x týdně osobní trénink s korekcí techniky", "Soukromé fitness centrum"],
         price: 10490,
     },
 ]
@@ -98,7 +98,7 @@ const options = [
                 </p>
             </div>
             <div class="action">
-                <Button href={calendarUrl} title="Rezervovat konzultaci" />
+                <Button href="#kontaktuj-me" title="Kontaktuj mě" />
                 <p class="note">Zdarma &bull; 20 minut &bull; Nezávazně</p>
             </div>
         </div>

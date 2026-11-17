@@ -1,10 +1,10 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 
-import Button from "../../components/Button.astro"
-import Wrapper from "../../components/Wrapper.astro"
+import Button from "../../components/Button.astro";
+import Wrapper from "../../components/Wrapper.astro";
 
-import about from "../../assets/img/about.jpg"
+import about from "../../assets/img/about.jpg";
 
 const steps = [
     {
@@ -17,9 +17,11 @@ const steps = [
     },
     {
         title: "Teď už žádný „od pondělí“.",
-        text: "Začínáme trénovat! Máme domluvené pravidelné tréninky, každý týden si dáme 20minutový videohovor a já průběžně sleduju tvoje výsledky, monitoruju zátěž a upravuju plán podle toho, jak se posouváš.",
+        text: "Začínáme trénovat! Máme domluvené tréninky, každý týden si dáme 20minutový online trénink s korekcí techniky, kde doladíme techniku cviků na doma a já průběžně sleduju tvoje výsledky, monitoruju zátěž a upravuju plán podle toho, jak se posouváš.",
     },
 ]
+const calendarUrl =
+    "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0lLEHvoXtZnIo-BMhCINbuWCDknQ0kxlgSf_12b1juJ52gE1AHpN0dPt1p62YW0_kon_SSygRY?gv=true"
 ---
 
 <Wrapper id="o-mne">
@@ -44,7 +46,7 @@ const steps = [
                     }
                 </ol>
                 <p class="cta-text">Tak co, dáme těch prvních 20 minut?</p>
-                <Button href="#kontaktuj-me" title="Kontaktuj mě" />
+                <Button href={calendarUrl} title="Rezervovat konzultaci" />
             </div>
             <div class="photo">
                 <Image
